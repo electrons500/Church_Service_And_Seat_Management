@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceAndSeatManagement", "ServiceAndSeatManagement\ServiceAndSeatManagement.csproj", "{647A1A29-DE53-489B-AF9C-AEA4B81A6E48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{647A1A29-DE53-489B-AF9C-AEA4B81A6E48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{647A1A29-DE53-489B-AF9C-AEA4B81A6E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{647A1A29-DE53-489B-AF9C-AEA4B81A6E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{647A1A29-DE53-489B-AF9C-AEA4B81A6E48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {964ADE57-3D32-4E68-A864-A6946C9C89BE}
+	EndGlobalSection
+EndGlobal
