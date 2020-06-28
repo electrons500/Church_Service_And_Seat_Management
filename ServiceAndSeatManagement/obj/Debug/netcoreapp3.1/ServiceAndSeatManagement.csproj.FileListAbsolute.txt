@@ -9,7 +9,6 @@ C:\Users\Yishmael\source\repos\ServiceAndSeatManagement\ServiceAndSeatManagement
 C:\Users\Yishmael\source\repos\ServiceAndSeatManagement\ServiceAndSeatManagement\bin\Debug\netcoreapp3.1\ServiceAndSeatManagement.pdb
 C:\Users\Yishmael\source\repos\ServiceAndSeatManagement\ServiceAndSeatManagement\bin\Debug\netcoreapp3.1\ServiceAndSeatManagement.Views.dll
 C:\Users\Yishmael\source\repos\ServiceAndSeatManagement\ServiceAndSeatManagement\bin\Debug\netcoreapp3.1\ServiceAndSeatManagement.Views.pdb
-C:\Users\Yishmael\source\repos\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.csprojAssemblyReference.cache
 C:\Users\Yishmael\source\repos\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.RazorAssemblyInfo.cache
 C:\Users\Yishmael\source\repos\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.RazorAssemblyInfo.cs
 C:\Users\Yishmael\source\repos\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.AssemblyInfoInputs.cache
