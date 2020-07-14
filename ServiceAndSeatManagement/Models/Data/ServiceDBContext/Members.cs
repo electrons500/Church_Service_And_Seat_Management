@@ -21,9 +21,8 @@ namespace ServiceAndSeatManagement.Models.Data.ServiceDBContext
         public int DepartmentId { get; set; }
         public int ServiceCategoryId { get; set; }
         public string SeatNumber { get; set; }
-        public int CurrentDateId { get; set; }
+        public DateTime CurrentDate { get; set; }
 
-        public virtual CurrentDate CurrentDate { get; set; }
         public virtual Department Department { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual ServiceCategory ServiceCategory { get; set; }

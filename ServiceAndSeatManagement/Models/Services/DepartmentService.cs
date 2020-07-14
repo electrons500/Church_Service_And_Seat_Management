@@ -76,6 +76,49 @@ namespace ServiceAndSeatManagement.Models.Services
         }
 
         // Is left with creating list of department and get Department
+        public List<DepartmentViewModel> GetDepartments()
+        {
+            try
+            {
+                var departments = _Context.Department.ToList();
+                List<DepartmentViewModel> model = departments.Select(x => new DepartmentViewModel
+                {
+                   DepartmentId = x.DepartmentId,
+                   DepartmentName = x.DepartmentName
+
+                }).ToList();
+
+                return model;
+            }
+            catch (Exception)
+            {
+
+                List<DepartmentViewModel> emptymodel = new List<DepartmentViewModel>();
+                return emptymodel;
+            }
+
+        }
+
+        public DepartmentViewModel GetDepartmentDetails(int? id)
+        {
+            try
+            {
+               Department departments = _Context.Department.Where(x => x.DepartmentId == id).FirstOrDefault();
+                DepartmentViewModel model = new DepartmentViewModel
+                {
+                   DepartmentId  = departments.DepartmentId,
+                    DepartmentName = departments.DepartmentName
+                };
+
+                return model;
+            }
+            catch (Exception)
+            {
+               DepartmentViewModel emptymodel = new DepartmentViewModel();
+                return emptymodel;
+
+            }
+        }
 
     }
 }

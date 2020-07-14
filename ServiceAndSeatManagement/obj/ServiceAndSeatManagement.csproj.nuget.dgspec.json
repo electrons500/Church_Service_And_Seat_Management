@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Yishmael\\source\\repos\\ServiceAndSeatManagement\\ServiceAndSeatManagement\\ServiceAndSeatManagement.csproj": {}
+    "C:\\Users\\Yishmael\\source\\repos\\electrons500\\ServiceAndSeatManagement\\ServiceAndSeatManagement\\ServiceAndSeatManagement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Yishmael\\source\\repos\\ServiceAndSeatManagement\\ServiceAndSeatManagement\\ServiceAndSeatManagement.csproj": {
+    "C:\\Users\\Yishmael\\source\\repos\\electrons500\\ServiceAndSeatManagement\\ServiceAndSeatManagement\\ServiceAndSeatManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Yishmael\\source\\repos\\ServiceAndSeatManagement\\ServiceAndSeatManagement\\ServiceAndSeatManagement.csproj",
+        "projectUniqueName": "C:\\Users\\Yishmael\\source\\repos\\electrons500\\ServiceAndSeatManagement\\ServiceAndSeatManagement\\ServiceAndSeatManagement.csproj",
         "projectName": "ServiceAndSeatManagement",
-        "projectPath": "C:\\Users\\Yishmael\\source\\repos\\ServiceAndSeatManagement\\ServiceAndSeatManagement\\ServiceAndSeatManagement.csproj",
+        "projectPath": "C:\\Users\\Yishmael\\source\\repos\\electrons500\\ServiceAndSeatManagement\\ServiceAndSeatManagement\\ServiceAndSeatManagement.csproj",
         "packagesPath": "C:\\Users\\Yishmael\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Yishmael\\source\\repos\\ServiceAndSeatManagement\\ServiceAndSeatManagement\\obj\\",
+        "outputPath": "C:\\Users\\Yishmael\\source\\repos\\electrons500\\ServiceAndSeatManagement\\ServiceAndSeatManagement\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -58,6 +58,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.5, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.3, )"
             }
           },
           "imports": [
@@ -78,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

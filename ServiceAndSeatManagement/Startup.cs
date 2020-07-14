@@ -34,6 +34,13 @@ namespace ServiceAndSeatManagement
             //adding dependency injection for all the services classes
 
             services.AddScoped<DepartmentService>();
+            services.AddScoped<DailyReportService>();
+            services.AddScoped<GenderService>();
+            services.AddScoped<MembersService>();
+            services.AddScoped<ServiceCategoryService>();
+            services.AddScoped<TemperatureService>();
+            services.AddScoped<VerifyMemberService>();
+            services.AddScoped<WeekServices>();
 
         }
 

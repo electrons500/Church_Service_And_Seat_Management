@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ServiceAndSeatManagement.Models.ViewModel.DailyReportViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReportId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WeekId)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Service1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentDate)
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeekName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentDate)
+            </td>
+
+
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ReportId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ReportId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ReportId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
