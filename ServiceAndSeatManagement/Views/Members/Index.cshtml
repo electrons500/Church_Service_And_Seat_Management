@@ -1,0 +1,75 @@
+﻿@model PaginatedList<ServiceAndSeatManagement.Models.Data.ServiceDBContext.Members>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Member ID
+            </th>
+
+            <th>
+               Member name
+            </th>
+
+            <th>
+                Service category
+            </th>
+            <th>
+                Seat number
+            </th>
+
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceCategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatNumber)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MemberId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MemberId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MemberId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+@{ 
+    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+    var NextDisabled = !Model.NextPage ? "disabled" : "";
+}
+
+<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1 )" class="btn btn-outline-primary @prevDisabled" >
+    Previous
+</a>
+<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1 )" class="btn btn-outline-primary @NextDisabled" >
+    Next
+</a>

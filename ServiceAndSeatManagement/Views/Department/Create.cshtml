@@ -1,0 +1,90 @@
+﻿@model ServiceAndSeatManagement.Models.ViewModel.DepartmentViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>DepartmentViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DepartmentName" class="control-label"></label>
+                <input asp-for="DepartmentName" class="form-control" />
+                <span asp-validation-for="DepartmentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/lib/bootbox/bootbox.js"></script>
+    <script src="~/js/ajaxdialog.js"></script>
+   
+<script>
+ function btnCreateClicked(btn) {
+            //Check if form is valid
+            $('form').validate();
+            if ($('form').valid() !== true) {
+                return;
+            }
+            //Ask for confirmation
+            bootbox.confirm({
+                centerVertical: true,
+                message: 'Do you really want to create this employee ?',//confirmation question
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {//Process user answer to confirmation question
+                    if (result) {//User clicked YES
+                        //Disable button
+                        $(btn).attr("disabled", true);
+                        //Prepare form data to be sent
+                        var sendData = {
+                           // Id: $('#Id').val(),
+                            Firstname: $('#Firstname').val(),
+                            Lastname: $('#Lastname').val(),
+                            Age: $('#Age').val()
+                        };
+                        //Action to be called to perform operation
+                        var urlToCreateEmployee = "/Employee/Create";//url to the create action in controller
+                        //Verification token
+                        var requestVerificationToken = $('input[type=hidden][name=__RequestVerificationToken]', document).val();
+                        //Call the function to send ajax call with data and confirm dialogs
+                        SaveAlertDialog(btn, sendData, urlToCreateEmployee, requestVerificationToken);
+                    }
+                    else {//User clicked NO
+                        //Enable button
+                        $(btn).attr("disabled", false);
+                    }
+                }
+            });
+        }
+    </script>
+   
+}
+
