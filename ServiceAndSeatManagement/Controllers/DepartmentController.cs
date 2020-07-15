@@ -21,8 +21,7 @@ namespace ServiceAndSeatManagement.Controllers
         public ActionResult Index()
         {
             var model = _DepartmentService.GetDepartments();
-            Alert("Data successfully updated!",NotificationType.success);
-
+           
             return View(model);
         }
 
@@ -49,7 +48,11 @@ namespace ServiceAndSeatManagement.Controllers
                 bool result = _DepartmentService.AddDepartment(model);
                 if (result)
                 {
-                    return RedirectToAction(nameof(Index));
+                    Alert("Data successfully added!", NotificationType.success);
+                }
+                else
+                {
+                    Alert("Data Failed to be added!", NotificationType.error);
                 }
 
                 throw new Exception();
@@ -77,7 +80,11 @@ namespace ServiceAndSeatManagement.Controllers
                 bool result = _DepartmentService.UpdateDepartment(model);
                 if (result)
                 {
-                    return RedirectToAction(nameof(Index));
+                    Alert("Data successfully updated!", NotificationType.success);
+                }
+                else
+                {
+                    Alert("Data Failed to be updated!", NotificationType.error);
                 }
 
                 throw new Exception();

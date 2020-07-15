@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceAndSeatManagement.Models.Services;
 using ServiceAndSeatManagement.Models.ViewModel;
+using static ServiceAndSeatManagement.Models.Enum;
 
 namespace ServiceAndSeatManagement.Controllers
 {
-    public class WeekController : Controller
+    public class WeekController : BaseController
     {
         private WeekServices _WeekService;
         public WeekController(WeekServices weekService)
@@ -67,7 +68,11 @@ namespace ServiceAndSeatManagement.Controllers
                 bool result = _WeekService.UpdateWeeks(model);
                 if (result)
                 {
-                    return RedirectToAction(nameof(Index));
+                    Alert("Week successfully changed!", NotificationType.success);
+                }
+                else
+                {
+                    Alert("Week Failed to change!", NotificationType.error);
                 }
                 throw new Exception();
             }

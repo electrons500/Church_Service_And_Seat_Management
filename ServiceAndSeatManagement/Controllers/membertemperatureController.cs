@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceAndSeatManagement.Models.Services;
 using ServiceAndSeatManagement.Models.ViewModel;
+using static ServiceAndSeatManagement.Models.Enum;
 
 namespace ServiceAndSeatManagement.Controllers
 {
-    public class membertemperatureController : Controller
+    public class membertemperatureController : BaseController
     {
         private TemperatureService _TemperatureService;
         public membertemperatureController(TemperatureService temperatureService)
@@ -48,7 +49,11 @@ namespace ServiceAndSeatManagement.Controllers
                 bool result = _TemperatureService.AddTemperature(model);
                 if (result)
                 {
-                    return RedirectToAction(nameof(Index));
+                    Alert("Temperature successfully recorded!", NotificationType.success);
+                }
+                else
+                {
+                    Alert("Temperature Failed to be recorded!", NotificationType.error);
                 }
 
                 throw new Exception();
@@ -76,7 +81,11 @@ namespace ServiceAndSeatManagement.Controllers
                 bool result = _TemperatureService.UpdateTemperature(model);
                 if (result)
                 {
-                    return RedirectToAction(nameof(Index));
+                    Alert("Temperature successfully updated!", NotificationType.success);
+                }
+                else
+                {
+                    Alert("Temperature Failed to be updated!", NotificationType.error);
                 }
 
                 throw new Exception();
