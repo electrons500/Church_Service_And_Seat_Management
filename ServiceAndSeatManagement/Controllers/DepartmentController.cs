@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceAndSeatManagement.Models.Services;
 using ServiceAndSeatManagement.Models.ViewModel;
+using static ServiceAndSeatManagement.Models.Enum;
 
 namespace ServiceAndSeatManagement.Controllers
 {
-    public class DepartmentController : Controller
+    public class DepartmentController : BaseController
     {
         private DepartmentService _DepartmentService;
         public DepartmentController(DepartmentService departmentService)
@@ -20,6 +21,7 @@ namespace ServiceAndSeatManagement.Controllers
         public ActionResult Index()
         {
             var model = _DepartmentService.GetDepartments();
+            Alert("Data successfully updated!",NotificationType.success);
 
             return View(model);
         }
