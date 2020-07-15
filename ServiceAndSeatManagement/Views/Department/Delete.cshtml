@@ -12,17 +12,76 @@
     <h4>DepartmentViewModel</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DepartmentName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DepartmentName)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="DepartmentId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+
+    <form method="post">
+        <input id="Id" type="hidden" asp-for="DepartmentId" />
+        <input id="btnDelete" type="button" value="Delete" class="btn btn-danger" onclick="btnDeleteClicked(this)" /> |
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
+
+@section Scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script src="~/lib/bootbox.js/bootbox.js"></script>
+    <script src="~/js/ajaxdialog.js"></script>
+    <script>
+        function btnDeleteClicked(btn) {
+            //Check if form is valid
+            var departmentId = $('#Id').val()
+
+
+            $('form').validate();
+            if ($('form').valid() !== true) {
+                return;
+            }
+            //Ask for confirmation
+            bootbox.confirm({
+                message: 'Do you really want to delete this department ?',//confirmation question
+                centerVertical: true,
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {//Process user answer to confirmation question
+                    if (result) {//User clicked YES
+                        //Disable button
+                        $(btn).attr("disabled", true);
+                        //Prepare form data to be sent
+
+                        //Action to be called to perform operation
+                        var urlToCreateEmployee = "/Department/Delete/" + departmentId;//url to the create action in controller
+                        //Verification token
+                        var requestVerificationToken = $('input[type=hidden][name=__RequestVerificationToken]', document).val();
+                        //Call the function to send ajax call with data and confirm dialogs
+                        DeleteAlertDialog(btn, urlToCreateEmployee, requestVerificationToken,"Department");
+
+                    }
+                    else {//User clicked NO
+                        //Enable button
+                        $(btn).attr("disabled", false);
+                    }
+                }
+            });
+
+
+
+        }
+    </script>
+
+}

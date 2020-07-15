@@ -138,7 +138,6 @@ C:\Users\Yishmael\Source\Repos\electrons500\ServiceAndSeatManagement\ServiceAndS
 C:\Users\Yishmael\Source\Repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.dll
 C:\Users\Yishmael\Source\Repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.pdb
 C:\Users\Yishmael\Source\Repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.genruntimeconfig.cache
-C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.csprojAssemblyReference.cache
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.dll
@@ -232,3 +231,4 @@ C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndS
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\membertemperature\Index.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\ServiceCategory\Index.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_NotificationPartial.cshtml.g.cs
+C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\bin\Debug\netcoreapp3.1\libman.json

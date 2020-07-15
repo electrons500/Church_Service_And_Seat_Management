@@ -7,6 +7,8 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link href="~/FontAwesome.4.7.0/Content/Content/font-awesome.css" rel="stylesheet" />
+
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -16,8 +18,8 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
-
     <script src="~/lib/dist/sweetalert.min.js"></script>
+
 </head>
 <body>
     <header>
@@ -47,7 +49,7 @@
             @RenderBody()
         </main>
     </div>
-
+    <div class="preloaderModal"> </div>
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2020 - ServiceAndSeatManagement - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -56,6 +58,16 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+   
+    <script>
+        $body = $("body");
+        $(document).on({
+            ajaxStart: function () { $body.addClass("loading"); },
+            ajaxStop: function () { $body.removeClass("loading"); }
+        });
+
+    </script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -69,3 +69,27 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/*Bootbox CSS here*/
+.bootbox .modal-header {
+    display: block;
+}
+
+.preloaderModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255,255, .8) url('../img/5.gif') 50% 50% no-repeat;
+}
+
+body.loading .preloaderModal {
+    overflow: hidden;
+}
+
+body.loading .preloaderModal {
+    display: block;
+}

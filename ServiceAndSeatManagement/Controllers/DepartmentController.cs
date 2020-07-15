@@ -112,14 +112,28 @@ namespace ServiceAndSeatManagement.Controllers
                 bool result = _DepartmentService.RemoveDepartment(id);
                 if (result)
                 {
-                    return RedirectToAction(nameof(Index));
+                    return Json(
+                         new
+                         {
+                             state = 0,
+                             msg = "Department has been successfully deleted.",
+                             redirectUrlInSuccess = "Index"
+                         }
+                         );
+                }
+                else
+                {
+                    return View();
                 }
 
-                throw new Exception();
+
+
+
             }
-            catch
+            catch (Exception)
             {
-                return View();
+                ModelState.AddModelError(string.Empty, "Something wrong has happened.");
+                return null;
             }
         }
     }

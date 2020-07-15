@@ -14,8 +14,10 @@ namespace ServiceAndSeatManagement.Models.ViewModel
         [Key]
         public int TemperatureId { get; set; }
         [DisplayName("Temperature")]
+        [Required(ErrorMessage = "Please temperature record")]
         public decimal TempuratureNumber { get; set; }
         [DisplayName("Verify status")]
+        [Required(ErrorMessage = "Please select verify")]
         public int VerifyId { get; set; }
         [NotMapped]
         public SelectList VerifyList { get; set; }
