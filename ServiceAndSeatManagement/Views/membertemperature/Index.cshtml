@@ -1,62 +1,81 @@
-﻿@model IEnumerable<ServiceAndSeatManagement.Models.ViewModel.TemperatureViewModel>
+﻿@model cloudscribe.Pagination.Models.PagedResult<ServiceAndSeatManagement.Models.Data.ServiceDBContext.Temperature>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+   
+
 }
 
-<h1>Index</h1>
+<h2>Today's temperature record list</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+<br />
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MemberId)
+            <th hidden>
+                Member ID
             </th>
             <th>
-               @Html.DisplayNameFor(model => model.MemberName)
+                Member name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ServiceCategoryId)
+                Service category
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TempuratureNumber)
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.TempSortOrderParam"> Temperature</a>
             </th>
-           
+
             <th>
-                @Html.DisplayNameFor(model => model.VerifyId)
+                Verification status
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MemberId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MemberName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ServiceCategoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TempuratureNumber)
-            </td>
+        @foreach (var item in Model.Data)
+        {
+            i++;
+            <tr>
+                <td hidden>
+                    @Html.DisplayFor(modelItem => item.MemberId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Member.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceCategory.ServiceCategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TempuratureNumber)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Verify.VerifyName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TemperatureId" class="btn btn-warning">Edit</a>
+
+                </td>
+            </tr>
+
            
-            <td>
-                @Html.DisplayFor(modelItem => item.VerifyName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TemperatureId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TemperatureId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TemperatureId">Delete</a>
-            </td>
-        </tr>
-}
+        }
     </tbody>
 </table>
+
+
+<cs-pager cs-paging-pagenumber="Model.PageNumber"
+          cs-paging-totalitems="Model.TotalItems"
+          cs-paging-pagesize="Model.PageSize"
+          cs-pagenumber-param="pageNumber"
+          asp-controller="membertemperature"
+          asp-action="Index"
+          cs-pager-li-current-class="page-item active"
+          cs-pager-li-other-class="page-item"
+          cs-pager-li-non-active-class="page-item disabled"
+          cs-pager-link-current-class="page-link"
+          cs-pager-link-other-class="page-link"></cs-pager>

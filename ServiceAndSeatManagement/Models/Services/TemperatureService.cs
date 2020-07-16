@@ -121,12 +121,11 @@ namespace ServiceAndSeatManagement.Models.Services
             {
                 Temperature temperature = new Temperature
                 {
-                    TemperatureId = model.TemperatureId,
                     MemberId = model.MemberId,
                     WeekId = model.WeekId,
                     ServiceCategoryId = model.ServiceCategoryId,
                     TempuratureNumber = model.TempuratureNumber,
-                    CurrentDate = DateTime.Now,
+                    CurrentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString()),
                     VerifyId = model.VerifyId
                 };
 
@@ -137,8 +136,8 @@ namespace ServiceAndSeatManagement.Models.Services
             }
             catch (Exception)
             {
-
                 return false;
+              
             }
         }
 

@@ -168,7 +168,7 @@ namespace ServiceAndSeatManagement.Models.Data.ServiceDBContext
 
                 entity.Property(e => e.CurrentDate).HasColumnType("date");
 
-                entity.Property(e => e.TempuratureNumber).HasColumnType("decimal(3, 2)");
+                entity.Property(e => e.TempuratureNumber).HasColumnType("decimal(5, 2)");
 
                 entity.HasOne(d => d.Member)
                     .WithMany(p => p.Temperature)

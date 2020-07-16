@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using cloudscribe.Pagination.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ServiceAndSeatManagement.Models.Data.ServiceDBContext;
 using ServiceAndSeatManagement.Models.Services;
 using ServiceAndSeatManagement.Models.ViewModel;
 using static ServiceAndSeatManagement.Models.Enum;
@@ -13,15 +17,63 @@ namespace ServiceAndSeatManagement.Controllers
     public class membertemperatureController : BaseController
     {
         private TemperatureService _TemperatureService;
-        public membertemperatureController(TemperatureService temperatureService)
+        private ServiceDBContext _Context;
+        public membertemperatureController(TemperatureService temperatureService,ServiceDBContext context)
         {
             _TemperatureService = temperatureService;
+            _Context = context;
         }
         // GET: membertemperature
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder,int pageNumber=1,int pageSize=5)
         {
-            var model = _TemperatureService.GetTemperatures();
-            return View(model);
+            ViewBag.TempSortOrderParam = String.IsNullOrEmpty(sortOrder) ? "Temp_desc" : "";
+            string currentdates = DateTime.Now.ToString("yyyy'-'MM'-'dd");
+
+            int ExcludeRecords = (pageNumber * pageSize) - pageSize;
+            var temperatures = from b in _Context.Temperature
+                                                .Include(x => x.Member)
+                                                .Include(x => x.ServiceCategory)
+                                                .Include(x => x.Verify)
+                                                
+                               select b;
+
+            //counts number of temperature record
+            var temperatureCount = temperatures.Count();
+            var i = temperatureCount;
+            //*********This logic is a switch statement converted into expressions********
+            //sorting
+            temperatures = sortOrder switch
+            {
+                "Temp_desc" => temperatures.OrderByDescending(b => b.TempuratureNumber),
+                _ => temperatures.OrderBy(b => b.TempuratureNumber),
+            };
+
+            //*******************************************************************
+
+           
+            temperatures = temperatures
+                                  .Where(x => x.CurrentDate == Convert.ToDateTime(currentdates))
+                                 .Skip(ExcludeRecords)
+                                 .Take(pageSize);
+           
+            if(temperatures.Count() == 0)
+            {
+                temperatureCount = 0;
+            }
+            else
+            {
+                temperatureCount = i;
+            }
+
+            var result = new PagedResult<Temperature>
+            {
+                Data = temperatures.AsNoTracking().ToList(),
+                TotalItems = temperatureCount,
+                PageNumber = pageNumber,
+                PageSize = pageSize 
+
+            };
+            return View(result);
         }
 
         // GET: membertemperature/Details/5
@@ -46,24 +98,31 @@ namespace ServiceAndSeatManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(TemperatureViewModel model)
         {
+
+
             try
             {
                 bool result = _TemperatureService.AddTemperature(model);
                 if (result)
                 {
                     Alert("Temperature successfully recorded!", NotificationType.success);
+                   
+
                 }
                 else
                 {
                     Alert("Temperature Failed to be recorded!", NotificationType.error);
                 }
 
-                throw new Exception();
-            }
-            catch
-            {
                 return View();
             }
+            catch (Exception)
+            {
+
+                throw new Exception();
+                
+            }
+           
         }
 
         // GET: membertemperature/Edit/5

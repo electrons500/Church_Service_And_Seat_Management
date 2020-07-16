@@ -14,17 +14,17 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="TemperatureId" />
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label asp-for="MemberId" class="control-label"></label>
                 <input asp-for="MemberId" class="form-control" />
                 <span asp-validation-for="MemberId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="WeekId" class="control-label"></label>
-                <input asp-for="WeekId" class="form-control" />
+                <input asp-for="WeekId" class="form-control" readonly />
                 <span asp-validation-for="WeekId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label asp-for="ServiceCategoryId" class="control-label"></label>
                 <input asp-for="ServiceCategoryId" class="form-control" />
                 <span asp-validation-for="ServiceCategoryId" class="text-danger"></span>
@@ -34,18 +34,18 @@
                 <input asp-for="TempuratureNumber" class="form-control" />
                 <span asp-validation-for="TempuratureNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label asp-for="CurrentDate" class="control-label"></label>
-                <input asp-for="CurrentDate" class="form-control" />
+                <input asp-for="CurrentDate" class="form-control"  />
                 <span asp-validation-for="CurrentDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label asp-for="VerifyId" class="control-label"></label>
                 <input asp-for="VerifyId" class="form-control" />
                 <span asp-validation-for="VerifyId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Submit changes" class="btn btn-primary" />
             </div>
         </form>
     </div>
