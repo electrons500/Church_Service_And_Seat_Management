@@ -27,7 +27,7 @@ using ServiceAndSeatManagement.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"028919e5123a247e8f06e5a524f25664d05503ac", @"/Views/membertemperature/Edit.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1ab42519694fc4e2b9497ba3fd854a9db0c5c729", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"fc5c797264ccda7ad7d7e583383290e875c86032", @"/Views/_ViewImports.cshtml")]
     public class Views_membertemperature_Edit : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ServiceAndSeatManagement.Models.ViewModel.TemperatureViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("text-danger"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);

@@ -103,7 +103,6 @@ namespace ServiceAndSeatManagement.Models.Data.ServiceDBContext
                 entity.Property(e => e.CurrentDate).HasColumnType("date");
 
                 entity.Property(e => e.DigitalAddress)
-                    .IsRequired()
                     .HasMaxLength(50);
 
                 entity.Property(e => e.FullName)
@@ -224,5 +223,9 @@ namespace ServiceAndSeatManagement.Models.Data.ServiceDBContext
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
         public DbSet<ServiceAndSeatManagement.Models.ViewModel.DailyReportViewModel> DailyReportViewModel { get; set; }
+
+        public DbSet<ServiceAndSeatManagement.Models.ViewModel.WeekViewModel> WeekViewModel { get; set; }
+
+        public DbSet<ServiceAndSeatManagement.Models.ViewModel.MembersViewModel> MembersViewModel { get; set; }
     }
 }

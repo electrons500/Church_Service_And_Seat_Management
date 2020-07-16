@@ -27,7 +27,7 @@ using ServiceAndSeatManagement.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5fd7aad9c00d0182869864814b6590f52f1cf301", @"/Views/Dailyreport/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1ab42519694fc4e2b9497ba3fd854a9db0c5c729", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"fc5c797264ccda7ad7d7e583383290e875c86032", @"/Views/_ViewImports.cshtml")]
     public class Views_Dailyreport_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<ServiceAndSeatManagement.Models.ViewModel.DailyReportViewModel>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Create", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);

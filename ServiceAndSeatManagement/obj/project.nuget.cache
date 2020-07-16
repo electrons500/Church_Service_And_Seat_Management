@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "AFT8OZviTgO9WEtFwNA8DvGOvLd5iNWZ7+pl9k1/7GZG9/gqAlshlaU7/mBuQ2qRj07kIVmZYO1dt/SejcVQIQ==",
+  "dgSpecHash": "nv8KR2wF3sLp64k81c2VzaHwZOgEpLVjcSiJFWsip46jT4ZmRO0aI4nQ2v7/BPYxt1lExvA0B3nakqLaxzpLLw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Yishmael\\source\\repos\\electrons500\\ServiceAndSeatManagement\\ServiceAndSeatManagement\\ServiceAndSeatManagement.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Yishmael\\.nuget\\packages\\cloudscribe.pagination.models\\1.0.5\\cloudscribe.pagination.models.1.0.5.nupkg.sha512",
+    "C:\\Users\\Yishmael\\.nuget\\packages\\cloudscribe.web.pagination\\3.0.0\\cloudscribe.web.pagination.3.0.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\Yishmael\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\3.1.0\\microsoft.aspnetcore.razor.language.3.1.0.nupkg.sha512",
@@ -107,6 +109,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.linq.expressions\\4.3.0\\system.linq.expressions.4.3.0.nupkg.sha512",
+    "C:\\Users\\Yishmael\\.nuget\\packages\\system.linq.queryable\\4.3.0\\system.linq.queryable.4.3.0.nupkg.sha512",
     "C:\\Users\\Yishmael\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.net.http\\4.3.0\\system.net.http.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.net.nameresolution\\4.3.0\\system.net.nameresolution.4.3.0.nupkg.sha512",

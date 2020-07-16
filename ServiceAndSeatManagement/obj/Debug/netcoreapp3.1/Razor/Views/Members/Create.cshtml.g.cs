@@ -27,7 +27,7 @@ using ServiceAndSeatManagement.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4056a1b5d4db7ee8237b6c9d847d07e2bc10ba90", @"/Views/Members/Create.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1ab42519694fc4e2b9497ba3fd854a9db0c5c729", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"fc5c797264ccda7ad7d7e583383290e875c86032", @"/Views/_ViewImports.cshtml")]
     public class Views_Members_Create : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ServiceAndSeatManagement.Models.ViewModel.MembersViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("text-danger"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using cloudscribe.Pagination.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 using ServiceAndSeatManagement.Models;
 using ServiceAndSeatManagement.Models.Data.ServiceDBContext;
 using ServiceAndSeatManagement.Models.Services;
@@ -24,9 +26,25 @@ namespace ServiceAndSeatManagement.Controllers
             _Context = context;
         }
         // GET: Members
-        public async Task<ActionResult> Index(int pageNumber=1)
-        {          
-            return View(await PaginatedList<Members>.CreateAsync(_Context.Members,pageNumber,5));
+        public ActionResult Index2()
+        {
+            var model = _MembersService.GetMembers();
+            return View(model);
+        }public ActionResult Index(int pageNumber=1,int pageSize=1)
+        {
+            int ExcludeRecords = (pageNumber * pageSize) - pageSize;
+            var members = _Context.Members.Include(x => x.ServiceCategory).Skip(ExcludeRecords).Take(pageSize);
+
+            var result = new PagedResult<Members>
+            {
+                Data = members.AsNoTracking().ToList(),
+                TotalItems = _Context.Members.Count(),
+                PageNumber = pageNumber,
+                PageSize = pageSize
+                
+            };
+                                 
+            return View(result);
         }
 
         // GET: Members/Details/5

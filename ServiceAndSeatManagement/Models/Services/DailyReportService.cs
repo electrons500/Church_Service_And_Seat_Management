@@ -52,7 +52,6 @@ namespace ServiceAndSeatManagement.Models.Services
                     Service1 = b.Service1,
                     Service2 = b.Service2,
                     Service3 = b.Service3,
-                    Service4 = b.Service4,
                     WeekId = b.WeekId,
                     WeekName = b.Week.WeekName
 

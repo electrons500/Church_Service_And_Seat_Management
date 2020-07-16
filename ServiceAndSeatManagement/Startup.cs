@@ -42,6 +42,8 @@ namespace ServiceAndSeatManagement
             services.AddScoped<VerifyMemberService>();
             services.AddScoped<WeekServices>();
 
+            services.AddCloudscribePagination();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

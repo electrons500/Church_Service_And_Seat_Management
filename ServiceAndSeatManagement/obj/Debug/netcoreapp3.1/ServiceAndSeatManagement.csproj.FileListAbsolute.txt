@@ -211,8 +211,6 @@ C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndS
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.csproj.CoreCompileInputs.cache
-C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Dailyreport\Index.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Department\Create.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Department\Delete.cshtml.g.cs
@@ -223,7 +221,6 @@ C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndS
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Members\Delete.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Members\Details.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Members\Edit.cshtml.g.cs
-C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Members\Index.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\membertemperature\Create.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\membertemperature\Delete.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\membertemperature\Details.cshtml.g.cs
@@ -232,3 +229,12 @@ C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndS
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\ServiceCategory\Index.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_NotificationPartial.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\bin\Debug\netcoreapp3.1\libman.json
+C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.csprojAssemblyReference.cache
+C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Week\Edit.cshtml.g.cs
+C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Week\Index.cshtml.g.cs
+C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Members\Index.cshtml.g.cs
+C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\bin\Debug\netcoreapp3.1\cloudscribe.Pagination.Models.dll
+C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\bin\Debug\netcoreapp3.1\cloudscribe.Web.Pagination.dll
+C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.csproj.CoreCompileInputs.cache
+C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.MvcApplicationPartsAssemblyInfo.cache

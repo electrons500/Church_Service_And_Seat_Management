@@ -1,4 +1,4 @@
-﻿@model PaginatedList<ServiceAndSeatManagement.Models.Data.ServiceDBContext.Members>
+﻿@model cloudscribe.Pagination.Models.PagedResult<ServiceAndSeatManagement.Models.Data.ServiceDBContext.Members>
 
 @{
     ViewData["Title"] = "Index";
@@ -18,14 +18,14 @@
             </th>
 
             <th>
-               Member name
+               Name
             </th>
 
             <th>
                 Service category
             </th>
             <th>
-                Seat number
+               Seat number
             </th>
 
 
@@ -34,7 +34,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Data) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.MemberId)
@@ -45,7 +45,7 @@
 
 
             <td>
-                @Html.DisplayFor(modelItem => item.ServiceCategoryId)
+                @Html.DisplayFor(modelItem => item.ServiceCategory.ServiceCategoryName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SeatNumber)
@@ -54,22 +54,25 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.MemberId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.MemberId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MemberId">Delete</a>
+                <a asp-controller="membertemperature" asp-action="Delete" asp-route-id="@item.MemberId">Check temperature</a>
+                @*<a asp-action="Delete" asp-route-id="@item.MemberId">Delete</a>*@
             </td>
         </tr>
 }
     </tbody>
 </table>
 
-
-@{ 
-    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
-    var NextDisabled = !Model.NextPage ? "disabled" : "";
-}
-
-<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1 )" class="btn btn-outline-primary @prevDisabled" >
-    Previous
-</a>
-<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1 )" class="btn btn-outline-primary @NextDisabled" >
-    Next
-</a>
+<cs-pager 
+      cs-paging-pagenumber="Model.PageNumber"
+      cs-paging-totalitems="Model.TotalItems"
+      cs-paging-pagesize= "Model.PageSize"
+      cs-pagenumber-param="pageNumber"
+      asp-controller="Members"
+      asp-action="Index"
+      cs-pager-li-current-class="page-item active"
+      cs-pager-li-other-class="page-item"
+      cs-pager-li-non-active-class="page-item disabled"
+      cs-pager-link-current-class="page-link"
+      cs-pager-link-other-class="page-link"
+ 
+ ></cs-pager>

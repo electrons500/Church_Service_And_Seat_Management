@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ServiceAndSeatManagement.Models.Services;
 using ServiceAndSeatManagement.Models.ViewModel;
 using static ServiceAndSeatManagement.Models.Enum;
@@ -86,11 +87,12 @@ namespace ServiceAndSeatManagement.Controllers
                 {
                     Alert("Data Failed to be updated!", NotificationType.error);
                 }
-
+                
                 throw new Exception();
             }
             catch
             {
+               
                 return View();
             }
         }

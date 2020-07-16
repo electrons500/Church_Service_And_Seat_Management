@@ -62,7 +62,7 @@ namespace ServiceAndSeatManagement.Models.Services
                     .Include(x => x.Department)
                     .Include(x => x.ServiceCategory)
                     .ToList();
-
+              
                 List<MembersViewModel> model = members.Select(x => new MembersViewModel
                 {
                     MemberId = x.MemberId,
@@ -93,6 +93,7 @@ namespace ServiceAndSeatManagement.Models.Services
                 List<MembersViewModel> emptymodel = new List<MembersViewModel>();
 
                 return emptymodel;
+               
             }
         }
 
@@ -116,12 +117,15 @@ namespace ServiceAndSeatManagement.Models.Services
                     Age = members.Age,
                     GenderId = members.GenderId,
                     GenderName = members.Gender.GenderName,
+                    GenderList = new SelectList(_GenderService.GetGenders(), "GenderId", "GenderName"),
                     DigitalAddress = members.DigitalAddress,
                     PhoneNumber = members.PhoneNumber,
                     DepartmentId = members.DepartmentId,
                     DepartmentName = members.Department.DepartmentName,
+                    DepartmentList = new SelectList(_DepartmentService.GetDepartments(), "DepartmentId", "DepartmentName"),
                     ServiceCategoryId = members.ServiceCategoryId,
                     ServiceCategoryName = members.ServiceCategory.ServiceCategoryName,
+                    ServiceCategoryList = new SelectList(_ServiceCategoryService.GetServiceCategories(), "ServiceCategoryId", "ServiceCategoryName"),
                     SeatNumber = members.SeatNumber,
                     CurrentDate = members.CurrentDate
                 };
@@ -142,7 +146,7 @@ namespace ServiceAndSeatManagement.Models.Services
             {
                 Members members = new Members
                 {
-                    MemberId = model.MemberId,
+
                     Surname = model.Surname,
                     Othernames = model.Othernames,
                     FullName = $"{ model.Surname.ToUpper()} { model.Othernames}",
