@@ -33,8 +33,10 @@ namespace ServiceAndSeatManagement.Controllers
         }
 
         // GET: membertemperature/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
+            ViewBag.MemberId = id;
+
             var model = _TemperatureService.CreateTemperature();
             return View(model);
         }

@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
 
-<h4>TemperatureViewModel</h4>
+
+<h4>Member's temperature</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,20 +15,20 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="MemberId" class="control-label"></label>
-                <input asp-for="MemberId" class="form-control" />
+                <input asp-for="MemberId" class="form-control" value="@ViewBag.MemberId" disabled/>
                 <span asp-validation-for="MemberId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="WeekId" class="control-label"></label>
-                <select asp-for="WeekId" class="form-control" asp-items="Model?.WeekList">
-                    <option>Select week number</option>
+                <select asp-for="WeekId" class="form-control" asp-items="Model?.WeekList" disabled>
+                   
 
                 </select>
               
                 <span asp-validation-for="WeekId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ServiceCategoryId" class="control-label"></label>
+                <label  class="control-label">Current service attending</label>
                 <select asp-for="ServiceCategoryId" class="form-control" asp-items="Model?.ServiceCategoryList">
                     <option>Select service category</option>
 

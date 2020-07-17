@@ -26,19 +26,31 @@ namespace ServiceAndSeatManagement.Controllers
             _Context = context;
         }
         // GET: Members
-        public ActionResult Index2()
-        {
-            var model = _MembersService.GetMembers();
-            return View(model);
-        }public ActionResult Index(int pageNumber=1,int pageSize=1)
+       
+        public ActionResult Index(string searchString,int pageNumber=1,int pageSize=5)
         {
             int ExcludeRecords = (pageNumber * pageSize) - pageSize;
-            var members = _Context.Members.Include(x => x.ServiceCategory).Skip(ExcludeRecords).Take(pageSize);
+            var members = from b in _Context.Members.Include(x => x.ServiceCategory)
+                          select b;
+
+            //counts all members registered
+            var memberCount = members.Count();
+
+            //code for filtering
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                members = members.Where(x => x.FullName.Contains(searchString));
+                memberCount = members.Count();
+                
+            }
+
+            //code for pagination and arranging fullname ascending order of alphabet
+            members = members.OrderBy(b => b.FullName).Skip(ExcludeRecords).Take(pageSize);
 
             var result = new PagedResult<Members>
             {
                 Data = members.AsNoTracking().ToList(),
-                TotalItems = _Context.Members.Count(),
+                TotalItems = memberCount,
                 PageNumber = pageNumber,
                 PageSize = pageSize
                 

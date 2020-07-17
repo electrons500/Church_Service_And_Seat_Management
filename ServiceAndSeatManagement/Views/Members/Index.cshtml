@@ -5,14 +5,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<form asp-action="Index" method="get">
+    <div>
+        <div class="row">
+            <div class="col">
+                <input type="text" name="SearchString" value="" class="form-control" placeholder="search by member name"/>
+            </div>
+            <div class="col">
+                <input type="submit" name="" value="Search" class="btn btn-info"/>
+                <a asp-action="Index">Cancel search</a>
+            </div>
+           
+        </div>
+    </div>
+
+</form>
+
+<br />
+
+<div class="row">
+    <div class="col-5">
+        <h2>Members</h2>
+    </div>
+    <div class="col-6 text-right"> 
+            <a asp-action="Create" class="btn btn-primary">Add new member</a>
+    </div>
+</div>
+
+
+
+<table class="table table-striped">
     <thead>
-        <tr>
+        <tr class="bg-primary text-white">
             <th>
                 Member ID
             </th>
@@ -52,9 +77,9 @@
             </td>
 
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MemberId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MemberId">Details</a> |
-                <a asp-controller="membertemperature" asp-action="Delete" asp-route-id="@item.MemberId">Check temperature</a>
+                <a asp-action="Edit" asp-route-id="@item.MemberId" class="btn btn-warning btn-sm">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MemberId" class="btn btn-success btn-sm">Details</a> |
+                <a asp-controller="membertemperature" asp-action="Create" asp-route-id="@item.MemberId" class="btn btn-danger btn-sm">Check temperature</a>
                 @*<a asp-action="Delete" asp-route-id="@item.MemberId">Delete</a>*@
             </td>
         </tr>

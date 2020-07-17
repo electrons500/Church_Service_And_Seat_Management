@@ -12,6 +12,7 @@ namespace ServiceAndSeatManagement.Models.ViewModel
     public class MembersViewModel
     {
         [Key]
+        [DataType(DataType.Text)]
         public int MemberId { get; set; }
         [Required(ErrorMessage = "Please your surname")]
         public string Surname { get; set; }
