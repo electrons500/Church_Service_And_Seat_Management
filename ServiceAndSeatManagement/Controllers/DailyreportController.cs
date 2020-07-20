@@ -1,21 +1,48 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using cloudscribe.Pagination.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ServiceAndSeatManagement.Models.Data.ServiceDBContext;
 using ServiceAndSeatManagement.Models.Services;
+using System;
+using System.Linq;
 
 namespace ServiceAndSeatManagement.Controllers
 {
     public class DailyreportController : Controller
     {
         private DailyReportService _DailyReportService;
-        public DailyreportController(DailyReportService dailyReportService)
+        private ServiceDBContext _Context;
+        public DailyreportController(DailyReportService dailyReportService,ServiceDBContext context)
         {
             _DailyReportService = dailyReportService;
+            _Context = context;
         }
         // GET: Dailyreport
-        public ActionResult Index()
+        public ActionResult Index(int pageNumber = 1, int pageSize = 5)
         {
-            var model = _DailyReportService.GetDailyReport();
-            return View(model);
+            int ExcludeRecords = (pageNumber * pageSize) - pageSize;
+            string currentdates = DateTime.Now.ToShortDateString();
+
+            var reports = from b in _Context.DailyReport.Include(x => x.Week)
+                        select b;
+
+            var countRecords = reports.Count();
+                        
+                     reports = reports
+                                    .Where(x => x.CurrentDate == Convert.ToDateTime(currentdates))
+                                    .Skip(ExcludeRecords)
+                                    .Take(pageSize);
+
+            var result = new PagedResult<DailyReport>
+            {
+                Data = reports.AsNoTracking().ToList(),
+                TotalItems = countRecords,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+
+            };
+            return View(result);
         }
 
         // GET: Dailyreport/Details/5

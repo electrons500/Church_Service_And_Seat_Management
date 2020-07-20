@@ -63,6 +63,11 @@ namespace ServiceAndSeatManagement.Models.Data.ServiceDBContext
                     .IsUnicode(false)
                     .IsFixedLength();
 
+                    entity.Property(e => e.Total)
+                    .HasMaxLength(4)
+                    .IsUnicode(false);
+                    
+
                 entity.HasOne(d => d.Week)
                     .WithMany(p => p.DailyReport)
                     .HasForeignKey(d => d.WeekId)

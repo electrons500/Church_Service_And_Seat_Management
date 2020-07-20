@@ -32,6 +32,7 @@ namespace ServiceAndSeatManagement.Models.ViewModel
         [DisplayName("Date")]
         [DataType(DataType.Date)]
         public DateTime CurrentDate { get; set; }
+        public string Total { get; set; }
 
     }
 }

@@ -1,37 +1,42 @@
-﻿@model IEnumerable<ServiceAndSeatManagement.Models.ViewModel.DailyReportViewModel>
+﻿@model cloudscribe.Pagination.Models.PagedResult<ServiceAndSeatManagement.Models.Data.ServiceDBContext.DailyReport>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+   
 }
 
-    <div style="text-align:center">
-        <h2>Daily report</h2>
-        <p>Number of members the registered for each service for today</p>
+<div style="text-align:center">
+    <h2>Daily report</h2>
+    <p>Number of members that registered for each service for this sunday @DateTime.Now.ToLongDateString()</p>
 
-    </div>
+</div>
 
 <table class="table">
     <thead>
         <tr>
+            @*<th>
+                S/No.
+            </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.ReportId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WeekId)
+                Week No.
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.Service1)
+                1st Service
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Service2)
+                2nd Service
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Service3)
+                3rd Service
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CurrentDate)
+               Total
+            </th>
+            <th>
+                Date
             </th>
 
 
@@ -39,13 +44,14 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model.Data)
+        {
         <tr>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.ReportId)
-            </td>
+            </td>*@
             <td>
-                @Html.DisplayFor(modelItem => item.WeekName)
+                @Html.DisplayFor(modelItem => item.Week.WeekName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Service1)
@@ -57,17 +63,32 @@
                 @Html.DisplayFor(modelItem => item.Service3)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CurrentDate)
             </td>
 
 
-
             @*<td >
-                <a asp-action="Edit" asp-route-id="@item.ReportId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ReportId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ReportId">Delete</a>
-            </td>*@
+            <a asp-action="Edit" asp-route-id="@item.ReportId">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.ReportId">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.ReportId">Delete</a>
+        </td>*@
         </tr>
-}
+        }
     </tbody>
 </table>
+
+<cs-pager cs-paging-pagenumber="Model.PageNumber"
+          cs-paging-totalitems="Model.TotalItems"
+          cs-paging-pagesize="Model.PageSize"
+          cs-pagenumber-param="pageNumber"
+          asp-controller="membertemperature"
+          asp-action="Index"
+          cs-pager-li-current-class="page-item active"
+          cs-pager-li-other-class="page-item"
+          cs-pager-li-non-active-class="page-item disabled"
+          cs-pager-link-current-class="page-link"
+          cs-pager-link-other-class="page-link"></cs-pager>
+

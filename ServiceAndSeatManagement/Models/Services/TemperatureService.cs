@@ -14,7 +14,7 @@ namespace ServiceAndSeatManagement.Models.Services
     public class TemperatureService
     {
         private ServiceDBContext _Context;
-        private int ReportId,CountMembersInFirstService, CountMembersInSecondService, CountMembersInThirdService, CountMembersInFourthService;
+        private int ReportId,CountMembersInFirstService, CountMembersInSecondService, CountMembersInThirdService, CountMembersInFourthService,TotalMembers;
 
 
         public TemperatureService(ServiceDBContext context)
@@ -161,6 +161,7 @@ namespace ServiceAndSeatManagement.Models.Services
                     CountMembersInThirdService = 0;
                     CountMembersInFourthService = 0;
 
+
                     switch (ServiceCategoryNumber)
                     {
                         case 1:
@@ -179,6 +180,7 @@ namespace ServiceAndSeatManagement.Models.Services
 
                     }
 
+                    TotalMembers = CountMembersInFirstService + CountMembersInSecondService + CountMembersInThirdService;
 
                     DailyReport InsertReport = new DailyReport
                     {
@@ -187,7 +189,9 @@ namespace ServiceAndSeatManagement.Models.Services
                         Service3 = CountMembersInThirdService.ToString(),
                         Service4 = CountMembersInFourthService.ToString(),
                         WeekId = model.WeekId,
-                        CurrentDate = Convert.ToDateTime(currentDates)
+                        CurrentDate = Convert.ToDateTime(currentDates),
+                        Total = TotalMembers.ToString()
+                        
 
                     };
 
@@ -225,13 +229,14 @@ namespace ServiceAndSeatManagement.Models.Services
                      }
 
 
-                  
+                    TotalMembers = CountMembersInFirstService + CountMembersInSecondService + CountMembersInThirdService;
 
                     ReportId = dailyReport.ReportId;
                     DailyReport UpdateReport = _Context.DailyReport.Where(b => b.ReportId == ReportId).FirstOrDefault();
                     UpdateReport.Service1 = CountMembersInFirstService.ToString();
                     UpdateReport.Service2 = CountMembersInSecondService.ToString();
                     UpdateReport.Service3 = CountMembersInThirdService.ToString();
+                    UpdateReport.Total = TotalMembers.ToString();
 
                     _Context.Update(UpdateReport);
                     _Context.SaveChanges();
