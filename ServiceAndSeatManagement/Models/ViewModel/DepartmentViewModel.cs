@@ -10,6 +10,7 @@ namespace ServiceAndSeatManagement.Models.ViewModel
     public class DepartmentViewModel
     {   
         [Key]
+        [DisplayName("S/No")]
         public int DepartmentId { get; set; }
         [DisplayName("Department")]
         public string DepartmentName { get; set; }

@@ -11,12 +11,13 @@ using ServiceAndSeatManagement.Models;
 using ServiceAndSeatManagement.Models.Data.ServiceDBContext;
 using ServiceAndSeatManagement.Models.Services;
 using ServiceAndSeatManagement.Models.ViewModel;
+using static ServiceAndSeatManagement.Models.Enum;
 
 namespace ServiceAndSeatManagement.Controllers
 {
     
    
-    public class MembersController : Controller
+    public class MembersController : BaseController
     {
         private MembersService _MembersService;
         private ServiceDBContext _Context;
@@ -79,14 +80,24 @@ namespace ServiceAndSeatManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(MembersViewModel model)
         {
+            int SeatNumberNotGreaterThanHundred = Convert.ToInt32(model.SeatNumber);
             try
             {
-                bool result = _MembersService.AddMembers(model);
-                if (result)
-                {
-                    return RedirectToAction(nameof(Index));
-                }
 
+                if (SeatNumberNotGreaterThanHundred > 100)
+                {
+                    Alert("You cannot enter seat number exceeding 100", NotificationType.error);
+                    return View();
+                }
+                else
+                {
+                    bool result = _MembersService.AddMembers(model);
+                    if (result)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    
+                }
                 throw new Exception();
             }
             catch

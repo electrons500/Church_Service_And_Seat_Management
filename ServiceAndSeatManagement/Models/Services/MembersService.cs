@@ -142,8 +142,11 @@ namespace ServiceAndSeatManagement.Models.Services
 
         public bool AddMembers(MembersViewModel model)
         {
+            int updateCounting = 0;
+           
             try
             {
+               
                 Members members = new Members
                 {
 
@@ -161,8 +164,32 @@ namespace ServiceAndSeatManagement.Models.Services
 
                 };
 
+
                 _Context.Members.Add(members);
                 _Context.SaveChanges();
+
+                //Add one to MemberCount in serviceCategory whenever a new person is registered depending on the service attending
+
+                ServiceCategory serviceCategories = _Context.ServiceCategory.Where(x => x.ServiceCategoryId == model.ServiceCategoryId).FirstOrDefault();
+               
+                //Get the value in MemberCount based on the service selected
+                int NumberOfMembers = Convert.ToInt32(serviceCategories.MemberCounts);
+                //Give the value retrieved to the variable updateCounting
+                updateCounting = NumberOfMembers;
+
+                //Apply switch statement by adding one to the already value retrieved
+                updateCounting += model.ServiceCategoryId switch
+                {
+                    1 => 1,
+                    2 => 1,
+                    _ => 1,
+                };
+
+                //pass the value back to MemberCount and update DB
+                serviceCategories.MemberCounts = updateCounting;
+                _Context.Update(serviceCategories);
+                _Context.SaveChanges();
+
 
                 return true;
             }

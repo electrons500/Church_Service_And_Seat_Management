@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ServiceAndSeatManagement.Models.Data.ServiceDBContext;
 using ServiceAndSeatManagement.Models.Services;
 using ServiceAndSeatManagement.Models.ViewModel;
 using static ServiceAndSeatManagement.Models.Enum;
@@ -13,9 +14,11 @@ namespace ServiceAndSeatManagement.Controllers
     public class WeekController : BaseController
     {
         private WeekServices _WeekService;
-        public WeekController(WeekServices weekService)
+        private ServiceDBContext _Context;
+        public WeekController(WeekServices weekService,ServiceDBContext context)
         {
             _WeekService = weekService;
+            _Context = context;
         }
         // GET: WeekController
         public ActionResult Index()
@@ -39,11 +42,36 @@ namespace ServiceAndSeatManagement.Controllers
         // POST: WeekController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(WeekViewModel model)
         {
+            int weekCount = _Context.Week.Count();
             try
             {
-                return RedirectToAction(nameof(Index));
+               //Adding weeks shouldnot exceed 48 Sundays in a year
+
+                if (weekCount > 48)
+                {
+                    Alert("Number of weeks will be exceeded", NotificationType.error);
+                }
+                else
+                {
+
+                    bool result = _WeekService.AddWeeks(model);
+                    if (result)
+                    {
+                        Alert("New week successfully added", NotificationType.success);
+                    }
+                    else
+                    {
+                        Alert("New week failed to add", NotificationType.error);
+                    }
+
+
+                }
+
+
+
+                return View();
             }
             catch
             {

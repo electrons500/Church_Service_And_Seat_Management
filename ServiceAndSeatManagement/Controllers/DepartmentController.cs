@@ -49,11 +49,11 @@ namespace ServiceAndSeatManagement.Controllers
                 bool result = _DepartmentService.AddDepartment(model);
                 if (result)
                 {
-                    Alert("Data successfully added!", NotificationType.success);
+                    Alert("Department successfully added!", NotificationType.success);
                 }
                 else
                 {
-                    Alert("Data Failed to be added!", NotificationType.error);
+                    Alert("Department Failed to be added!", NotificationType.error);
                 }
 
                 throw new Exception();

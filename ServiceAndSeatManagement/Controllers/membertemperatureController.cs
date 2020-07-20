@@ -24,7 +24,7 @@ namespace ServiceAndSeatManagement.Controllers
             _Context = context;
         }
         // GET: membertemperature
-        public ActionResult Index(string sortOrder,int pageNumber=1,int pageSize=5)
+        public ActionResult Index(string searchString,string sortOrder,int pageNumber=1,int pageSize=5)
         {
             ViewBag.TempSortOrderParam = String.IsNullOrEmpty(sortOrder) ? "Temp_desc" : "";
             string currentdates = DateTime.Now.ToString("yyyy'-'MM'-'dd");
@@ -55,8 +55,20 @@ namespace ServiceAndSeatManagement.Controllers
                                   .Where(x => x.CurrentDate == Convert.ToDateTime(currentdates))
                                  .Skip(ExcludeRecords)
                                  .Take(pageSize);
-           
-            if(temperatures.Count() == 0)
+
+            //code for filtering
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                // members = members.Where(x => x.FullName.Contains(searchString));
+                // memberCount = members.Count();
+                temperatures = temperatures.Where(x => x.Member.FullName.Contains(searchString));
+                temperatureCount = 0;
+
+            }
+
+
+
+            if (temperatures.Count() == 0 || temperatures.Count() < 5)
             {
                 temperatureCount = 0;
             }
@@ -65,6 +77,7 @@ namespace ServiceAndSeatManagement.Controllers
                 temperatureCount = i;
             }
 
+          
             var result = new PagedResult<Temperature>
             {
                 Data = temperatures.AsNoTracking().ToList(),
@@ -99,14 +112,13 @@ namespace ServiceAndSeatManagement.Controllers
         public ActionResult Create(TemperatureViewModel model)
         {
 
-
             try
             {
                 bool result = _TemperatureService.AddTemperature(model);
-                if (result)
+                if(result)
                 {
                     Alert("Temperature successfully recorded!", NotificationType.success);
-                   
+
 
                 }
                 else
@@ -119,10 +131,10 @@ namespace ServiceAndSeatManagement.Controllers
             catch (Exception)
             {
 
-                throw new Exception();
-                
+                throw;
+
             }
-           
+
         }
 
         // GET: membertemperature/Edit/5

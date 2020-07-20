@@ -5,8 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
 
+<p style="color:red">Note: Adding weeks shouldn't exceed 48</p>
+<br />
+
+<div class="row">
+    <div class="col-5">
+        <h2>List of weeks</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-primary">Add new weeks</a>
+    </div>
+</div>
 
 <table class="table">
     <thead>
@@ -30,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.WeekName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.WeekId">Edit</a>
+                <a asp-action="Edit" asp-route-id="@item.WeekId" class="btn btn-warning">Edit</a>
                @* <a asp-action="Details" asp-route-id="@item.WeekId">Details</a> |*@
                @* <a asp-action="Delete" asp-route-id="@item.WeekId">Delete</a>*@
             </td>

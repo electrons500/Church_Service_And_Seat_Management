@@ -100,6 +100,13 @@ namespace ServiceAndSeatManagement.Models.Services
                 _Context.Week.Update(weeks);
                 _Context.SaveChanges();
 
+                string currentDates = DateTime.Now.ToShortDateString();
+
+                DailyReport dailyReport = _Context.DailyReport.Where(x => x.CurrentDate == Convert.ToDateTime(currentDates)).FirstOrDefault();
+
+
+
+
                 return true;
             }
             catch (Exception)

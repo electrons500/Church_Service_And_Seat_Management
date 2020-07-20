@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using ServiceAndSeatManagement.Models.Data.ServiceDBContext;
 using ServiceAndSeatManagement.Models.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,7 +14,9 @@ namespace ServiceAndSeatManagement.Models.Services
     public class TemperatureService
     {
         private ServiceDBContext _Context;
-       
+        private int ReportId,CountMembersInFirstService, CountMembersInSecondService, CountMembersInThirdService, CountMembersInFourthService;
+
+
         public TemperatureService(ServiceDBContext context)
         {
             _Context = context;
@@ -117,6 +121,8 @@ namespace ServiceAndSeatManagement.Models.Services
 
         public bool AddTemperature(TemperatureViewModel model)
         {
+           
+
             try
             {
                 Temperature temperature = new Temperature
@@ -132,13 +138,115 @@ namespace ServiceAndSeatManagement.Models.Services
                 _Context.Temperature.Add(temperature);
                 _Context.SaveChanges();
 
+
+                //  Insert or update DailyReport table by counting the number of members registered in every sunday 3 services and dated 
+
+
+                string currentDates = DateTime.Now.ToShortDateString();
+
+                DailyReport dailyReport = _Context.DailyReport.Where(x => x.CurrentDate == Convert.ToDateTime(currentDates)).FirstOrDefault();
+
+               
+                var dailyService = _Context.DailyReport.Where(x => x.CurrentDate == Convert.ToDateTime(currentDates));
+                var dialyServiceMenberCount = dailyService.Count();
+
+                int ServiceCategoryNumber = Convert.ToInt32(model.ServiceCategoryId);
+
+                if (dialyServiceMenberCount == 0)
+                {
+                  // Get the intial values from the db Context to the variables
+
+                    CountMembersInFirstService = 0;
+                    CountMembersInSecondService = 0;
+                    CountMembersInThirdService = 0;
+                    CountMembersInFourthService = 0;
+
+                    switch (ServiceCategoryNumber)
+                    {
+                        case 1:
+                            CountMembersInFirstService += 1;
+                            break;
+                        case 2:
+                            CountMembersInSecondService += 1;
+                            break;
+                        case 3:
+                            CountMembersInThirdService += 1;
+                            break;
+
+                        default:
+                            CountMembersInFourthService += 1;
+                            break;
+
+                    }
+
+
+                    DailyReport InsertReport = new DailyReport
+                    {
+                        Service1 = CountMembersInFirstService.ToString(),
+                        Service2 = CountMembersInSecondService.ToString(),
+                        Service3 = CountMembersInThirdService.ToString(),
+                        Service4 = CountMembersInFourthService.ToString(),
+                        WeekId = model.WeekId,
+                        CurrentDate = Convert.ToDateTime(currentDates)
+
+                    };
+
+                    _Context.DailyReport.Add(InsertReport);
+                    _Context.SaveChanges();
+
+                }
+                else
+                {
+
+                    // Insert a new record if no record is found on the current sunday date
+
+                    CountMembersInFirstService = int.Parse(dailyReport.Service1);
+                    CountMembersInSecondService = int.Parse(dailyReport.Service2);
+                    CountMembersInThirdService = int.Parse(dailyReport.Service3);
+                    CountMembersInFourthService = int.Parse(dailyReport.Service4);
+
+                    
+                     switch (ServiceCategoryNumber)
+                     {
+                        case 1:
+                            CountMembersInFirstService += 1;
+                        break;
+                        case 2:
+                            CountMembersInSecondService += 1;
+                        break;
+                        case 3:
+                                CountMembersInThirdService += 1;
+                        break;
+
+                         default:
+                                 CountMembersInFourthService += 1;
+                        break;
+
+                     }
+
+
+                  
+
+                    ReportId = dailyReport.ReportId;
+                    DailyReport UpdateReport = _Context.DailyReport.Where(b => b.ReportId == ReportId).FirstOrDefault();
+                    UpdateReport.Service1 = CountMembersInFirstService.ToString();
+                    UpdateReport.Service2 = CountMembersInSecondService.ToString();
+                    UpdateReport.Service3 = CountMembersInThirdService.ToString();
+
+                    _Context.Update(UpdateReport);
+                    _Context.SaveChanges();
+
+
+                }
+
                 return true;
             }
             catch (Exception)
             {
-                return false;
-              
+                throw new Exception();
             }
+
+
         }
 
         public bool UpdateTemperature(TemperatureViewModel model)
@@ -182,5 +290,7 @@ namespace ServiceAndSeatManagement.Models.Services
                 return false;
             }
         }
+
+        
     }
 }

@@ -53,7 +53,9 @@ namespace ServiceAndSeatManagement.Models.Services
                     Service2 = b.Service2,
                     Service3 = b.Service3,
                     WeekId = b.WeekId,
-                    WeekName = b.Week.WeekName
+                    WeekName = b.Week.WeekName,
+                    CurrentDate = b.CurrentDate
+                    
 
                 }).ToList();
 

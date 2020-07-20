@@ -15,12 +15,15 @@ namespace ServiceAndSeatManagement.Models.ViewModel
         [DataType(DataType.Text)]
         public int MemberId { get; set; }
         [Required(ErrorMessage = "Please your surname")]
+        [RegularExpression("^[A-Za-z]*$", ErrorMessage = "Enter surname with only letters and no whitespaces")]
         public string Surname { get; set; }
         [Required(ErrorMessage = "Please enter your othernames")]
+        [RegularExpression("^[A-Za-z ]*$", ErrorMessage = "Enter othernames with only letters including whitespaces")]
         public string Othernames { get; set; }
         [DisplayName("Full name")]
         public string FullName { get; set; }
         [Required(ErrorMessage = "Please enter your age")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Enter only numbers")]
         public string Age { get; set; }
 
 
@@ -37,6 +40,8 @@ namespace ServiceAndSeatManagement.Models.ViewModel
         [DisplayName("Digital Address")]
         public string DigitalAddress { get; set; }
         [DisplayName("Phone number")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Enter only numbers")]
+        [StringLength(10,ErrorMessage ="Phone number cannot exceed 10")]
         public string PhoneNumber { get; set; }
 
 
@@ -61,6 +66,8 @@ namespace ServiceAndSeatManagement.Models.ViewModel
 
 
         [DisplayName("Seat number")]
+        [StringLength(3, ErrorMessage = "seat number cannot exceed 3 digits")]
+        [RegularExpression("^[0-9]*$",ErrorMessage ="Enter only numbers")]
         public string SeatNumber { get; set; }
         [DisplayName("Registered Date")]
         [DataType(DataType.Date)]
