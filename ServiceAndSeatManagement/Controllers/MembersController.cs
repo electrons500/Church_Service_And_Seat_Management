@@ -165,5 +165,42 @@ namespace ServiceAndSeatManagement.Controllers
                 return View();
             }
         }
+      
+        public ActionResult MembersLists(string searchName, int page = 1, int pageIndex = 5)
+        {
+            int ExcludeRecords = (page * pageIndex) - pageIndex;
+            var members = from b in _Context.Members.Include(x => x.ServiceCategory)
+                          select b;
+
+            //counts all members registered
+            var memberCount = members.Count();
+
+            //code for filtering
+            if (!String.IsNullOrEmpty(searchName))
+            {
+                members = members.Where(x => x.FullName.Contains(searchName));
+                memberCount = members.Count();
+                
+            }
+
+            //code for pagination and arranging fullname ascending order of alphabet
+            members = members.OrderBy(b => b.FullName).Skip(ExcludeRecords).Take(pageIndex);
+
+            var result = new PagedResult<Members>
+            {
+                Data = members.AsNoTracking().ToList(),
+                TotalItems = memberCount,
+                PageNumber = page,
+                PageSize = pageIndex
+                
+            };
+                                 
+            return View(result);
+        }
+      
+       
+
+       
+
     }
 }

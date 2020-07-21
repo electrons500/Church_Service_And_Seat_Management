@@ -1,0 +1,98 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<ServiceAndSeatManagement.Models.Data.ServiceDBContext.Members>
+
+@{
+    ViewData["Title"] = "List of members";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form asp-action="MembersLists" method="get">
+    <div>
+        <div class="row">
+            <div class="col">
+                <input type="text" name="SearchName" value="" class="form-control" placeholder="search by member name" />
+            </div>
+            <div class="col">
+                <input type="submit" name="" value="Search" class="btn btn-info" />
+                <a asp-action="MembersLists">Cancel search</a>
+            </div>
+
+        </div>
+    </div>
+
+</form>
+
+<br />
+
+<div class="row">
+    <div class="col-5">
+        <h2> Members</h2>
+    </div>
+   
+</div>
+
+
+
+<table class="table table-striped">
+    <thead>
+        <tr class="bg-primary text-white">
+            <th>
+                Member ID
+            </th>
+
+            <th>
+                Name
+            </th>
+
+            <th>
+                Service category
+            </th>
+            <th>
+                Seat number
+            </th>
+
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Data)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceCategory.ServiceCategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatNumber)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MemberId" class="btn btn-warning btn-sm">Edit</a> 
+                    <a asp-action="Details" asp-route-id="@item.MemberId" class="btn btn-success btn-sm">Details</a>                   
+                    @*<a asp-action="Delete" asp-route-id="@item.MemberId">Delete</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<cs-pager cs-paging-pagenumber="Model.PageNumber"
+          cs-paging-totalitems="Model.TotalItems"
+          cs-paging-pagesize="Model.PageSize"
+          cs-pagenumber-param="page"
+          asp-controller="Members"
+          asp-action="MembersLists"
+          cs-pager-li-current-class="page-item active"
+          cs-pager-li-other-class="page-item"
+          cs-pager-li-non-active-class="page-item disabled"
+          cs-pager-link-current-class="page-link"
+          cs-pager-link-other-class="page-link"></cs-pager>

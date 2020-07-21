@@ -239,3 +239,5 @@ C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndS
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.genruntimeconfig.cache
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Week\Create.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\ServiceAndSeatManagement.csprojAssemblyReference.cache
+C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Members\MembersLists.cshtml.g.cs
+C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Home\Settings.cshtml.g.cs

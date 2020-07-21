@@ -77,10 +77,9 @@
             </td>
 
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MemberId" class="btn btn-warning btn-sm">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MemberId" class="btn btn-success btn-sm">Details</a> |
+               
                 <a asp-controller="membertemperature" asp-action="Create" asp-route-id="@item.MemberId" class="btn btn-danger btn-sm">Check temperature</a>
-                @*<a asp-action="Delete" asp-route-id="@item.MemberId">Delete</a>*@
+              
             </td>
         </tr>
 }
