@@ -11,9 +11,14 @@
 
 <div class="row">
     <div class="col-5">
-        <h2>List of weeks</h2>
+        <h4>List of weeks</h4>
     </div>
-    <div class="col-6 text-right">
+    <div class="col">
+        <a style="margin:auto" asp-controller="Home" asp-action="Index">
+            <h6><i class="fa fa-home text-dark"></i> Click to go back to Menu</h6>
+        </a>
+    </div>
+    <div class="col-4 text-right" style="margin-bottom:10px">
         <a asp-action="Create" class="btn btn-primary">Add new weeks</a>
     </div>
 </div>

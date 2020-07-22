@@ -9,10 +9,17 @@
 <br />
 
     <div class="row">
-        <div class="col-5">
-            <h2>Departments</h2>
+        <div class="col-3 text-left" >
+            <h4>Departments</h4>
         </div>
-        <div class="col-6 text-right">
+
+         <div class="col text-center">
+              <a style="margin:auto" asp-controller="Home" asp-action="Index">
+                <h6><i class="fa fa-home text-dark"></i> Click to go back to Menu</h6>
+            </a>
+        </div>
+
+        <div class="col-3 text-right" style="margin-bottom:10px">
             <a asp-action="Create" class="btn btn-primary">Add new department</a>
         </div>
     </div>

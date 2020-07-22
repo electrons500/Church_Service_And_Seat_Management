@@ -52,111 +52,114 @@
             <div class="row" style="margin:auto;">
 
                 <div class="col-md-3 py-2">
-                    <div class="card" style="height:150px;">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <a  asp-controller="Members" asp-action="Create">
-                                    <div class="text-center ">
-                                        <p><i class="fa  fa-user-plus fa-3x"></i></p>
-                                    </div>
-                                    <div class="text-center">
-                                        <label>Add new member</label>
-                                    </div>
-                                </a>
+                    <a asp-controller="Members" asp-action="Create">
+                        <div class="card" style="height:150px;">
+                            <div class="card-body">
+                                <div class="form-group">                                
+                                        <div class="text-center ">
+                                            <p><i class="fa  fa-user-plus fa-3x"></i></p>
+                                        </div>
+                                        <div class="text-center">
+                                            <label>Add new member</label>
+                                        </div>                                   
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                    </a>
                 </div>
+
+
                 <div class="col-md-3 py-2" style="margin:auto">
-                    <div class="card" style="height:150px;">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <a asp-controller="Members" asp-action="Index">
+                    <a asp-controller="Members" asp-action="Index">
+                        <div class="card" style="height:150px;">
+                            <div class="card-body">
+                                <div class="form-group">
+
                                     <div class="text-center">
                                         <p><i class="fa  fa-thermometer-empty fa-3x"></i></p>
                                     </div>
                                     <div class="text-center">
                                         <label>Check temperature</label>
                                     </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
 
+                                </div>
+                            </div>
+
+                        </div>
+                        </a>
+                    
                 </div>
+
                 <div class="col-md-3 py-2">
-                    <div class="card" style="height:150px;">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <a  asp-controller="Members" asp-action="Index">
+                    <a asp-controller="Members" asp-action="MembersLists">
+                        <div class="card" style="height:150px;">
+                            <div class="card-body">
+                                <div class="form-group">
+
                                     <div class="text-center">
                                         <p><i class="fa  fa-address-book-o fa-3x"></i></p>
                                     </div>
                                     <div class="text-center">
                                         <label>view member information</label>
                                     </div>
-                                </a>
+
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
-
+                    </a>
                 </div>
 
 
             </div>
             <div class="row" style="margin:10px auto;">
                 <div class="col-md-3 py-2">
-                    <div class="card" style="height:150px;">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <a  asp-controller="membertemperature" asp-action="Index">
-                                    <div class="text-center">
-                                        <p><i class="fa  fa-thermometer-three-quarters fa-3x"></i></p>
-                                    </div>
-                                    <div class="text-center">
-                                        <label>View recorded temperature</label>
-                                    </div>
-                                </a>
+                    <a asp-controller="membertemperature" asp-action="Index">
+                        <div class="card" style="height:150px;">
+                            <div class="card-body">
+                                <div class="form-group">                                  
+                                        <div class="text-center">
+                                            <p><i class="fa  fa-thermometer-three-quarters fa-3x"></i></p>
+                                        </div>
+                                        <div class="text-center">
+                                            <label>View recorded temperature</label>
+                                        </div>                    
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                    </a>
                 </div>
                 <div class="col-md-3 py-2" style="margin:auto">
-                    <div class="card" style="height:150px;">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <a href="#">
-                                    <div class="text-center">
-                                        <p><i class="fa  fa-eye fa-3x"></i></p>
-                                    </div>
-                                    <div class="text-center">
-                                        <label>View reports</label>
-                                    </div>
-                                </a>
+                    <a href="#">
+                        <div class="card" style="height:150px;">
+                            <div class="card-body">
+                                <div class="form-group">                                   
+                                        <div class="text-center">
+                                            <p><i class="fa  fa-eye fa-3x"></i></p>
+                                        </div>
+                                        <div class="text-center">
+                                            <label>View reports</label>
+                                        </div>                                  
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                    </a>
                 </div>
                 <div class="col-md-3 py-2">
-                    <div class="card" style="height:150px;">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <a asp-controller="Home" asp-action="Settings">
-                                    <div class="text-center">
-                                        <p><i class="fa  fa-gear fa-3x"></i></p>
-                                    </div>
-                                    <div class="text-center">
-                                        <label>Settings</label>
-                                    </div>
-                                </a>
+                    <a asp-controller="Home" asp-action="Settings">
+                        <div class="card" style="height:150px;">
+                            <div class="card-body">
+                                <div class="form-group">                                  
+                                        <div class="text-center">
+                                            <p><i class="fa  fa-gear fa-3x"></i></p>
+                                        </div>
+                                        <div class="text-center">
+                                            <label>Settings</label>
+                                        </div>                                   
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                    </a>
                 </div>
 
 
