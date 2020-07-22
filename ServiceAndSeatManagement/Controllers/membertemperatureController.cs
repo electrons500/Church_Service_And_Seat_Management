@@ -38,8 +38,8 @@ namespace ServiceAndSeatManagement.Controllers
                                select b;
 
             //counts number of temperature record
-            var temperatureCount = temperatures.Count();
-            var i = temperatureCount;
+            var RowsCounted = temperatures.Count();
+            var tempCount = RowsCounted;
             //*********This logic is a switch statement converted into expressions********
             //sorting
             temperatures = sortOrder switch
@@ -62,7 +62,7 @@ namespace ServiceAndSeatManagement.Controllers
                 // members = members.Where(x => x.FullName.Contains(searchString));
                 // memberCount = members.Count();
                 temperatures = temperatures.Where(x => x.Member.FullName.Contains(searchString));
-                temperatureCount = 0;
+                RowsCounted = 0;
 
             }
 
@@ -70,18 +70,20 @@ namespace ServiceAndSeatManagement.Controllers
 
             if (temperatures.Count() == 0 || temperatures.Count() < 5)
             {
-                temperatureCount = 0;
+                RowsCounted = 0;
             }
             else
             {
-                temperatureCount = i;
+               //Each row is 5 in one page.If we have 12 rows it means 2 pages is suppose to show but it shows pagination count to 3 pages.so
+               //to make it up I substract one page which is 5 unknown row to correct the error
+                RowsCounted = tempCount - 5;
             }
 
           
             var result = new PagedResult<Temperature>
             {
                 Data = temperatures.AsNoTracking().ToList(),
-                TotalItems = temperatureCount,
+                TotalItems = RowsCounted,
                 PageNumber = pageNumber,
                 PageSize = pageSize 
 

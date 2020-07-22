@@ -13,7 +13,7 @@
                 <input type="text" name="SearchName" value="" class="form-control" placeholder="search by member name" />
             </div>
             <div class="col">
-                <input type="submit" name="" value="Search" class="btn btn-info" />
+                <button type="submit" name="" class="btn btn-info"><i class="fa fa-search"> Search</i></button>
                 <a asp-action="MembersLists">Cancel search</a>
             </div>
 
@@ -82,8 +82,8 @@
                 </td>
 
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.MemberId" class="btn btn-warning btn-sm">Edit</a> 
-                    <a asp-action="Details" asp-route-id="@item.MemberId" class="btn btn-success btn-sm">Details</a>                   
+                    <a asp-action="Edit" asp-route-id="@item.MemberId" class="btn btn-warning btn-sm"><i class="fa fa-edit"> Edit</i></a> 
+                    <a asp-action="Details" asp-route-id="@item.MemberId" class="btn btn-success btn-sm"><i class="fa fa-address-book-o"> Details</i></a>                   
                     @*<a asp-action="Delete" asp-route-id="@item.MemberId">Delete</a>*@
                 </td>
             </tr>

@@ -13,7 +13,7 @@
                 <input type="text" name="SearchString" value="" class="form-control" placeholder="search by member name"/>
             </div>
             <div class="col">
-                <input type="submit" name="" value="Search" class="btn btn-info"/>
+                <button type="submit" name="" class="btn btn-info"><i class="fa fa-search"> Search</i></button>
                 <a asp-action="Index">Cancel search</a>
             </div>
            
@@ -35,7 +35,7 @@
         </a>
     </div>
     <div class="col-5 text-right" style="margin-bottom:10px">
-        <a asp-action="Create" class="btn btn-primary">Add new member</a>
+        <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus"> Add new member</i></a>
     </div>
 </div>
 
@@ -84,7 +84,7 @@
 
             <td>
                
-                <a asp-controller="membertemperature" asp-action="Create" asp-route-id="@item.MemberId" class="btn btn-danger btn-sm">Check temperature</a>
+                <a asp-controller="membertemperature" asp-action="Create" asp-route-id="@item.MemberId" class="btn btn-danger btn-sm"><i class="fa fa-thermometer-quarter"> Check temperature</i></a>
               
             </td>
         </tr>
