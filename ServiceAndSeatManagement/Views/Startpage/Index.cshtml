@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="~/css/loader.css" rel="stylesheet" />
+</head>
+<body onload="myFunction()" style="margin:0;">
+
+    <div id="loader"></div>
+
+    <br />
+
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+        <h1><i class="fa fa-home fa-3x" ></i></h1>
+        <br />
+        <h1 style="color:darkblue">You are welcome to the startup page</h1>
+        <h2>Feel free to use and explore the application</h2>
+        <p>
+            Click on the <strong>Start here</strong> button below to start using the application.
+        </p>
+
+        <br />
+        <div class="text-center">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary"><i class="fa fa-users"> Start here</i></a>
+        </div>
+
+    </div>
+    
+  
+    <script>
+var myVar;
+
+function myFunction() {
+  myVar = setTimeout(showPage, 5000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+    </script>
+
+</body>
+</html>
