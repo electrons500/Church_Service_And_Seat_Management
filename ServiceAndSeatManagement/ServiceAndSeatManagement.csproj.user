@@ -10,5 +10,6 @@
     <WebStackScaffolding_DbContextTypeFullName>ServiceAndSeatManagement.Models.Data.ServiceDBContext.ServiceDBContext</WebStackScaffolding_DbContextTypeFullName>
     <Controller_SelectedScaffolderID>MvcControllerWithActionsScaffolder</Controller_SelectedScaffolderID>
     <Controller_SelectedScaffolderCategoryPath>root/Controller</Controller_SelectedScaffolderCategoryPath>
+    <NameOfLastUsedPublishProfile>FolderProfile</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
