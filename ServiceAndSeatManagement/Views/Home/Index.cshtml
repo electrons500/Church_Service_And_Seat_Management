@@ -37,7 +37,7 @@
             </div>
         </div>
     </div>
-   
+
 </div>
 
 <!-- end of row--->
@@ -55,13 +55,13 @@
                     <a asp-controller="Members" asp-action="Create">
                         <div class="card" style="height:150px;">
                             <div class="card-body">
-                                <div class="form-group">                                
-                                        <div class="text-center ">
-                                            <p><i class="fa  fa-user-plus fa-3x"></i></p>
-                                        </div>
-                                        <div class="text-center">
-                                            <label>Add new member</label>
-                                        </div>                                   
+                                <div class="form-group">
+                                    <div class="text-center ">
+                                        <p><i class="fa  fa-user-plus fa-3x"></i></p>
+                                    </div>
+                                    <div class="text-center">
+                                        <label>Add new member</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -86,8 +86,8 @@
                             </div>
 
                         </div>
-                        </a>
-                    
+                    </a>
+
                 </div>
 
                 <div class="col-md-3 py-2">
@@ -117,29 +117,29 @@
                     <a asp-controller="membertemperature" asp-action="Index">
                         <div class="card" style="height:150px;">
                             <div class="card-body">
-                                <div class="form-group">                                  
-                                        <div class="text-center">
-                                            <p><i class="fa  fa-thermometer-three-quarters fa-3x"></i></p>
-                                        </div>
-                                        <div class="text-center">
-                                            <label>View recorded temperature</label>
-                                        </div>                    
+                                <div class="form-group">
+                                    <div class="text-center">
+                                        <p><i class="fa  fa-thermometer-three-quarters fa-3x"></i></p>
+                                    </div>
+                                    <div class="text-center">
+                                        <label>View recorded temperature</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-3 py-2" style="margin:auto">
-                    <a href="#">
+                    <a onclick="Alert()">
                         <div class="card" style="height:150px;">
                             <div class="card-body">
-                                <div class="form-group">                                   
-                                        <div class="text-center">
-                                            <p><i class="fa  fa-eye fa-3x"></i></p>
-                                        </div>
-                                        <div class="text-center">
-                                            <label>View reports</label>
-                                        </div>                                  
+                                <div class="form-group">
+                                    <div class="text-center">
+                                        <p class="text-primary"><i class="fa  fa-eye fa-3x"></i></p>
+                                    </div>
+                                    <div class="text-center text-primary">
+                                        <label>View reports</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -149,13 +149,13 @@
                     <a asp-controller="Home" asp-action="Settings">
                         <div class="card" style="height:150px;">
                             <div class="card-body">
-                                <div class="form-group">                                  
-                                        <div class="text-center">
-                                            <p><i class="fa  fa-gear fa-3x"></i></p>
-                                        </div>
-                                        <div class="text-center">
-                                            <label>Settings</label>
-                                        </div>                                   
+                                <div class="form-group">
+                                    <div class="text-center">
+                                        <p><i class="fa  fa-gear fa-3x"></i></p>
+                                    </div>
+                                    <div class="text-center">
+                                        <label>Settings</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -168,3 +168,12 @@
     </div>
 
 </div>
+<br />
+<br />
+<br />
+
+<script>
+    function Alert() {
+        swal("Sorry!", "report is not ready yet.Try later!", "info");
+    }
+</script>

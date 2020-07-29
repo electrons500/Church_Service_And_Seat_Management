@@ -36,7 +36,7 @@
             </div>
             <div class="form-group" hidden>
                 <label asp-for="CurrentDate" class="control-label"></label>
-                <input asp-for="CurrentDate" class="form-control"  />
+                <input asp-for="CurrentDate" class="form-control" />
                 <span asp-validation-for="CurrentDate" class="text-danger"></span>
             </div>
             <div class="form-group" hidden>
@@ -53,8 +53,12 @@
 
 <div>
     <a asp-action="Index">Back to List</a>
-   
+
 </div>
+<br />
+<br />
+<br />
+<br />
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

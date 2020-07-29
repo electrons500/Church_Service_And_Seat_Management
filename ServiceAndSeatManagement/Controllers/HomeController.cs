@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ServiceAndSeatManagement.Models;
 using ServiceAndSeatManagement.Models.Data.ServiceDBContext;
+using static ServiceAndSeatManagement.Models.Enum;
 
 namespace ServiceAndSeatManagement.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
         private ServiceDBContext _Context;
@@ -55,6 +56,8 @@ namespace ServiceAndSeatManagement.Controllers
         {
             return View();
         }
+
+       
 
     }
 }
