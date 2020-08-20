@@ -25,26 +25,21 @@ namespace ServiceAndSeatManagement.Controllers
 
         public IActionResult Index()
         {
-             var a = _Context.ServiceCategory.Where(x => x.ServiceCategoryId == 1).FirstOrDefault();
-             var b = _Context.ServiceCategory.Where(x => x.ServiceCategoryId == 2).FirstOrDefault();
-             var c = _Context.ServiceCategory.Where(x => x.ServiceCategoryId == 3).FirstOrDefault();
+            //count number of members and department and assign it to the variables
+            var Registered_Members_Count = _Context.Members.Count();
+            var DepartmentCount = _Context.Department.Count();
+            var currentDate = DateTime.Now;
 
-             var firstServiceCount = a.MemberCounts;
-             var SecondServiceCount = b.MemberCounts;
-             var ThirdServiceCount = c.MemberCounts;
-
-            ViewBag.FirstService = firstServiceCount;
-            ViewBag.SecondService = SecondServiceCount;
-            ViewBag.ThirdService = ThirdServiceCount;
-            
+            var temperatureChecked = _Context.Temperature.Where(x => x.CurrentDate == currentDate).Count();
+            //assign the integer in the variables to the viewbags
+            ViewBag.RegMembersCount = Registered_Members_Count;
+            ViewBag.departmentCount = DepartmentCount;
+            ViewBag.temperatureCount = temperatureChecked;
             
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -24,7 +24,7 @@ namespace ServiceAndSeatManagement.Controllers
             _Context = context;
         }
         // GET: membertemperature
-        public ActionResult Index(string searchString,string sortOrder,int pageNumber=1,int pageSize=5)
+        public ActionResult Index(string searchString,string sortOrder,int pageNumber=1,int pageSize=10)
         {
             ViewBag.TempSortOrderParam = String.IsNullOrEmpty(sortOrder) ? "Temp_desc" : "";
             string currentdates = DateTime.Now.ToString("yyyy'-'MM'-'dd");
@@ -32,7 +32,7 @@ namespace ServiceAndSeatManagement.Controllers
             int ExcludeRecords = (pageNumber * pageSize) - pageSize;
             var temperatures = from b in _Context.Temperature
                                                 .Include(x => x.Member)
-                                                .Include(x => x.ServiceCategory)
+                                               
                                                 .Include(x => x.Verify)
                                                 
                                select b;

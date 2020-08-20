@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Service And Seat Management System</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link href="~/FontAwesome.4.7.0/Content/Content/font-awesome.css" rel="stylesheet" />
+
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+        <link href="~/FontAwesome.4.7.0/Content/Content/font-awesome.css" rel="stylesheet" />
+    </environment>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/dist/sweetalert.min.js"></script>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link href="~/FontAwesome.4.7.0/Content/Content/font-awesome.css" rel="stylesheet" />
+
+
+</head>
+<body>
+    
+    <br />
+    <div class="container">
+        <main role="main" class="pb-4">
+            @await Html.PartialAsync("_NotificationPartial")
+            @RenderBody()
+        </main>
+    </div>
+    <div class="preloaderModal"> </div>
+    <footer class="border-top footer text-muted">
+        @*<div class="container">
+            &copy; @DateTime.Now.Year - iSOFT Solutions Inc. Tel: +233546290555
+        </div>*@
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+   
+    <script>
+        $body = $("body");
+        $(document).on({
+            ajaxStart: function () { $body.addClass("loading"); },
+            ajaxStop: function () { $body.removeClass("loading"); }
+        });
+
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

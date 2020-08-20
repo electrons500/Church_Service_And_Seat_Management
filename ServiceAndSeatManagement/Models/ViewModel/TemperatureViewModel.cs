@@ -24,35 +24,15 @@ namespace ServiceAndSeatManagement.Models.ViewModel
         [NotMapped]
         public string VerifyName { get; set; }
 
-        [DisplayName("Members")]
+        [DisplayName("Member ID")]
         public int MemberId { get; set; }
         [NotMapped]
         public SelectList MemberList { get; set; }
         [NotMapped]
         public string MemberName { get; set; }
 
-        [DisplayName("Week")]
-        [Required(ErrorMessage = "Please select week number")]
-        public int WeekId { get; set; }
-        [NotMapped]
-        
-        public SelectList WeekList { get; set; }
-        [NotMapped]
-        public string WeekName { get; set; }
-
-        [DisplayName("Service category")]
-        [Required(ErrorMessage = "Please select service category")]
-        public int ServiceCategoryId { get; set; }
-        [NotMapped]
-        [Required(ErrorMessage = "Please select service category")]
-        public SelectList ServiceCategoryList { get; set; }
-        [NotMapped]
-        public string ServiceCategoryName { get; set; }
-
         [DisplayName("Date Checked")]
         public DateTime CurrentDate { get; set; }
-
-
 
     }
 }

@@ -13,6 +13,7 @@ using ServiceAndSeatManagement.Models.Services;
 using ServiceAndSeatManagement.Models.ViewModel;
 using static ServiceAndSeatManagement.Models.Enum;
 
+
 namespace ServiceAndSeatManagement.Controllers
 {
     
@@ -21,6 +22,7 @@ namespace ServiceAndSeatManagement.Controllers
     {
         private MembersService _MembersService;
         private ServiceDBContext _Context;
+      
         public MembersController(MembersService membersService,ServiceDBContext context)
         {
             _MembersService = membersService;
@@ -28,26 +30,34 @@ namespace ServiceAndSeatManagement.Controllers
         }
         // GET: Members
        
-        public ActionResult Index(string searchString,int pageNumber=1,int pageSize=5)
+        public ActionResult Index(string searchString,int pageNumber=1,int pageSize=10)
         {
+           
+
             int ExcludeRecords = (pageNumber * pageSize) - pageSize;
-            var members = from b in _Context.Members.Include(x => x.ServiceCategory)
+            // var members = _Context.Members.OrderBy(x =>x.FullName).Skip(ExcludeRecords).Take(pageSize);
+            var members = from b in _Context.Members
                           select b;
 
-            //counts all members registered
             var memberCount = members.Count();
 
-            //code for filtering
             if (!String.IsNullOrEmpty(searchString))
             {
-                members = members.Where(x => x.FullName.Contains(searchString));
-                memberCount = members.Count();
-                
+                if (IsNumeric(searchString))
+                {
+                    members = members.Where(x => x.MemberId == Convert.ToInt32(searchString));
+                    memberCount = members.Count();
+                }
+                else
+                {
+                    members = members.Where(x => x.FullName.Contains(searchString));
+                    memberCount = members.Count();
+                }
             }
+            
+            
 
-            //code for pagination and arranging fullname ascending order of alphabet
-            members = members.OrderBy(b => b.FullName).Skip(ExcludeRecords).Take(pageSize);
-
+            members = members.OrderBy(x => x.FullName).Skip(ExcludeRecords).Take(pageSize);
             var result = new PagedResult<Members>
             {
                 Data = members.AsNoTracking().ToList(),
@@ -57,6 +67,7 @@ namespace ServiceAndSeatManagement.Controllers
                 
             };
                                  
+
             return View(result);
         }
 
@@ -80,24 +91,18 @@ namespace ServiceAndSeatManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(MembersViewModel model)
         {
-            int SeatNumberNotGreaterThanHundred = Convert.ToInt32(model.SeatNumber);
+           
             try
             {
 
-                if (SeatNumberNotGreaterThanHundred > 100)
+                bool result = _MembersService.AddMembers(model);
+                if (result)
                 {
-                    Alert("You cannot enter seat number exceeding 100", NotificationType.error);
-                    return View();
-                }
-                else
-                {
-                    bool result = _MembersService.AddMembers(model);
-                    if (result)
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
+                   
+                    return RedirectToAction(nameof(Index));
                     
                 }
+
                 throw new Exception();
             }
             catch
@@ -124,7 +129,7 @@ namespace ServiceAndSeatManagement.Controllers
                 bool result = _MembersService.UpdateMembers(model);
                 if (result)
                 {
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(MembersLists));
                 }
 
                 throw new Exception();
@@ -166,40 +171,60 @@ namespace ServiceAndSeatManagement.Controllers
             }
         }
       
-        public ActionResult MembersLists(string searchName, int page = 1, int pageIndex = 5)
+        public ActionResult MembersLists(string searchName, int page = 1, int pageIndex = 10)
         {
             int ExcludeRecords = (page * pageIndex) - pageIndex;
-            var members = from b in _Context.Members.Include(x => x.ServiceCategory)
+            // var members = _Context.Members.OrderBy(x =>x.FullName).Skip(ExcludeRecords).Take(pageSize);
+            var members = from b in _Context.Members
                           select b;
 
-            //counts all members registered
             var memberCount = members.Count();
 
-            //code for filtering
             if (!String.IsNullOrEmpty(searchName))
             {
-                members = members.Where(x => x.FullName.Contains(searchName));
-                memberCount = members.Count();
-                
+                if (IsNumeric(searchName))
+                {
+                    members = members.Where(x => x.MemberId == Convert.ToInt32(searchName));
+                    memberCount = members.Count();
+                }
+                else
+                {
+                    members = members.Where(x => x.FullName.Contains(searchName));
+                    memberCount = members.Count();
+                }
             }
 
-            //code for pagination and arranging fullname ascending order of alphabet
-            members = members.OrderBy(b => b.FullName).Skip(ExcludeRecords).Take(pageIndex);
 
+
+            members = members.OrderBy(x => x.FullName).Skip(ExcludeRecords).Take(pageIndex);
             var result = new PagedResult<Members>
             {
                 Data = members.AsNoTracking().ToList(),
                 TotalItems = memberCount,
                 PageNumber = page,
                 PageSize = pageIndex
-                
+
             };
-                                 
+
+
             return View(result);
         }
       
        
+        public bool IsNumeric(object values)
+        {
+            try
+            {
+                int i = Convert.ToInt32(values.ToString());
 
+                return true;
+            }
+            catch (FormatException)
+            {
+
+                return false;
+            }
+        }
        
 
     }

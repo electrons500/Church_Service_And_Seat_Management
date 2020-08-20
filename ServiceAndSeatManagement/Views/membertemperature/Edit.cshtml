@@ -5,9 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<h1>Edit/Change temperature</h1>
 
-<h4>TemperatureViewModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -19,16 +18,7 @@
                 <input asp-for="MemberId" class="form-control" />
                 <span asp-validation-for="MemberId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="WeekId" class="control-label"></label>
-                <input asp-for="WeekId" class="form-control" readonly />
-                <span asp-validation-for="WeekId" class="text-danger"></span>
-            </div>
-            <div class="form-group" hidden>
-                <label asp-for="ServiceCategoryId" class="control-label"></label>
-                <input asp-for="ServiceCategoryId" class="form-control" />
-                <span asp-validation-for="ServiceCategoryId" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 <label asp-for="TempuratureNumber" class="control-label"></label>
                 <input asp-for="TempuratureNumber" class="form-control" />

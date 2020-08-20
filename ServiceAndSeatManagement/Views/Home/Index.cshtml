@@ -1,44 +1,46 @@
 ﻿@{
     ViewData["Title"] = "Quick Start";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- Row begins-->
-<div class="row mb-1">
-    <div class="col-md-3 col-sm-6 py-2">
-        <div class="card bg-success text-white h-auto">
-            <div class="card-body bg-success">
-                <div class="rotate">
-                    <i class="fa fa-user fa-3x"></i>
+    <div class="row mb-1">
+        <div class="col-md-3 col-sm-6 py-2">
+            <div class="card bg-success text-white h-auto">
+                <div class="card-body bg-success">
+                    <div class="rotate">
+                        <i class="fa fa-user fa-3x"></i>
+                    </div>
+                    <h6 class="text-uppercase">Members Registered</h6>
+                    <h1 class="display-4">@ViewBag.RegMembersCount</h1>
                 </div>
-                <h6 class="text-uppercase">1st service</h6>
-                <h1 class="display-4">@ViewBag.FirstService</h1>
             </div>
         </div>
-    </div>
-    <div class="col-md-3 col-sm-6 py-2">
-        <div class="card text-white bg-danger h-auto">
-            <div class="card-body bg-danger">
-                <div class="rotate">
-                    <i class="fa fa-list fa-3x"></i>
+        <div class="col-md-3 col-sm-6 py-2">
+            <div class="card text-white bg-danger h-auto">
+                <div class="card-body bg-danger">
+                    <div class="rotate">
+                        <i class="fa fa-list fa-3x"></i>
+                    </div>
+                    <h6 class="text-uppercase">Departments</h6>
+                    <h1 class="display-4">@ViewBag.departmentCount</h1>
                 </div>
-                <h6 class="text-uppercase">2nd service</h6>
-                <h1 class="display-4">@ViewBag.SecondService</h1>
             </div>
         </div>
-    </div>
-    <div class="col-md-3 col-sm-6 py-2">
-        <div class="card text-white bg-info h-auto">
-            <div class="card-body bg-info">
-                <div class="rotate">
-                    <i class="fa fa-twitter fa-3x"></i>
+        <div class="col-md-5 col-sm-7 py-2">
+            <div class="card text-white bg-danger h-auto">
+                <div class="card-body bg-info">
+                    <div class="rotate">
+                        <i class="fa fa-twitter fa-3x"></i>
+                    </div>
+                    <h6 class="text-uppercase">No. of temperature checked</h6>
+                    <h1 class="display-4">@ViewBag.temperatureCount</h1>
                 </div>
-                <h6 class="text-uppercase">3rd service</h6>
-                <h1 class="display-4">@ViewBag.ThirdService</h1>
             </div>
         </div>
-    </div>
 
-</div>
+
+    </div>
 
 <!-- end of row--->
 

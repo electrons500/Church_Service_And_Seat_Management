@@ -40,9 +40,7 @@
             <th>
                 Member name
             </th>
-            <th>
-                Service category
-            </th>
+           
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewBag.TempSortOrderParam"> Temperature</a>
             </th>
@@ -64,9 +62,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Member.FullName)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ServiceCategory.ServiceCategoryName)
-                </td>
+               
                 <td>
                     @Html.DisplayFor(modelItem => item.TempuratureNumber)
                 </td>

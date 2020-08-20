@@ -14,18 +14,15 @@ namespace ServiceAndSeatManagement.Models.ViewModel
         [Key]
         [DataType(DataType.Text)]
         public int MemberId { get; set; }
-        [Required(ErrorMessage = "Please your surname")]
-        [RegularExpression("^[A-Za-z]*$", ErrorMessage = "Enter surname with only letters and no whitespaces")]
-        public string Surname { get; set; }
-        [Required(ErrorMessage = "Please enter your othernames")]
-        [RegularExpression("^[A-Za-z ]*$", ErrorMessage = "Enter othernames with only letters including whitespaces")]
-        public string Othernames { get; set; }
-        [DisplayName("Full name")]
+       
+        [Required(ErrorMessage = "Please enter your Full name")]
+        
+        [DisplayName("Name")]
         public string FullName { get; set; }
         [Required(ErrorMessage = "Please enter your age")]
-        [RegularExpression("^[0-9]*$", ErrorMessage = "Enter only numbers")]
+        //[RegularExpression("^[0-9]*$", ErrorMessage = "Enter only numbers")]
+        [StringLength(4, ErrorMessage = "Age length exceeded")]
         public string Age { get; set; }
-
 
         [DisplayName("Gender")]
         [Required(ErrorMessage = "Please select gender")]
@@ -36,12 +33,12 @@ namespace ServiceAndSeatManagement.Models.ViewModel
         public string GenderName { get; set; }
 
 
-
         [DisplayName("Digital Address")]
         public string DigitalAddress { get; set; }
-        [DisplayName("Phone number")]
-        [RegularExpression("^[0-9]*$", ErrorMessage = "Enter only numbers")]
-        [StringLength(10,ErrorMessage ="Phone number cannot exceed 10")]
+
+        [DisplayName("Contact number")]
+        //[RegularExpression("^[0-9]*$", ErrorMessage = "Enter only numbers")]
+        //[StringLength(15,ErrorMessage ="Phone number cannot exceed 10")]
         public string PhoneNumber { get; set; }
 
 
@@ -53,21 +50,9 @@ namespace ServiceAndSeatManagement.Models.ViewModel
         [NotMapped]
         public string DepartmentName { get; set; }
 
-
-
-        [DisplayName("Service category")]
-        [Required(ErrorMessage = "Please your service category")]
-        public int ServiceCategoryId { get; set; }
-        [NotMapped]
-        public SelectList ServiceCategoryList { get; set; }
-        [NotMapped]
-        public string ServiceCategoryName { get; set; }
-
-
-
         [DisplayName("Seat number")]
-        [StringLength(3, ErrorMessage = "seat number cannot exceed 3 digits")]
-        [RegularExpression("^[0-9]*$",ErrorMessage ="Enter only numbers")]
+        [StringLength(6, ErrorMessage = "seat number cannot exceed 5 digits")]
+        //[RegularExpression("^[0-9]*$",ErrorMessage ="Enter only numbers")]
         public string SeatNumber { get; set; }
         [DisplayName("Registered Date")]
         [DataType(DataType.Date)]

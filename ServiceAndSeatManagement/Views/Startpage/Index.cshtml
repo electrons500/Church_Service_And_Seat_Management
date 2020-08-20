@@ -1,4 +1,8 @@
 ﻿<!DOCTYPE html>
+@{
+    
+    Layout = "~/Views/Shared/_FrontpageLayout.cshtml";
+}
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,33 +16,54 @@
     <br />
 
     <div style="display:none;" id="myDiv" class="animate-bottom">
-        <h1><i class="fa fa-home fa-3x" ></i></h1>
+        <div>
+            <img alt="AG logo" src="~/img/AG_logo.png" width="100" height="100" />
+        </div>
+         
         <br />
         <h1 style="color:darkblue">You are welcome to the startup page</h1>
-        <h2>Feel free to use and explore the application</h2>
+        
         <p>
-            Click on the <strong>Start here</strong> button below to start using the application.
+            Click on the <strong>Get Started</strong> button below to start using the application.
         </p>
 
         <br />
-        <div class="text-center">
-            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary"><i class="fa fa-users"> Start here</i></a>
+        <div class="row">
+            <div class="text-center align-self-center mx-auto">
+                @*<a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary"><i class="fa fa-users"> Start here</i></a>*@
+
+                <a asp-controller="Home" asp-action="Index">
+                    <div class="card" style="height:150px; width:400px;">
+                        <div class="card-body bg-primary">
+                            <div class="form-group">
+                                <div class="text-center ">
+                                    <p class="text-light"><i class="fa  fa-users fa-3x "></i></p>
+                                </div>
+                                <div class="text-center">
+                                    <label class="text-light">Get Started</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
         </div>
 
     </div>
-    
-  
+
+
     <script>
-var myVar;
+        var myVar;
 
-function myFunction() {
-  myVar = setTimeout(showPage, 5000);
-}
+        function myFunction() {
+            myVar = setTimeout(showPage, 5000);
+        }
 
-function showPage() {
-  document.getElementById("loader").style.display = "none";
-  document.getElementById("myDiv").style.display = "block";
-}
+        function showPage() {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("myDiv").style.display = "block";
+        }
     </script>
 
 </body>

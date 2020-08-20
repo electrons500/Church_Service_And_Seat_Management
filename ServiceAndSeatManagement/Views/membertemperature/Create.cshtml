@@ -18,23 +18,7 @@
                 <input asp-for="MemberId" class="form-control" value="@ViewBag.MemberId" readonly />
                 <span asp-validation-for="MemberId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="WeekId" class="control-label"></label>
-                <select asp-for="WeekId" class="form-control" asp-items="Model?.WeekList" required>
-                    <option hidden disabled selected>Select week number</option>
-
-                </select>
-
-                <span asp-validation-for="WeekId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Current service attending</label>
-                <select asp-for="ServiceCategoryId" class="form-control" asp-items="Model?.ServiceCategoryList" required>
-                    <option hidden disabled selected>Select service category</option>
-
-                </select>
-                <span asp-validation-for="ServiceCategoryId" class="text-danger"></span>
-            </div>
+            
             <div class="form-group">
                 <label asp-for="TempuratureNumber" class="control-label"></label>
                 <input asp-for="TempuratureNumber" class="form-control" required />
@@ -57,7 +41,8 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index"><i class="fa fa-users"> View to recorded temperature</i></a> &nbsp; |  &nbsp;
+    <a asp-controller="Home" asp-action="Index"><i class="fa fa-home"> Back to Main menu</i></a>
 </div>
 <br />
 <br />

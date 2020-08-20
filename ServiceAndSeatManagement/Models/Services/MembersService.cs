@@ -17,13 +17,13 @@ namespace ServiceAndSeatManagement.Models.Services
         private ServiceDBContext _Context;
         private GenderService _GenderService;
         private DepartmentService _DepartmentService;
-        private ServiceCategoryService _ServiceCategoryService;
-        public MembersService(ServiceDBContext context,GenderService genderService,DepartmentService departmentService,ServiceCategoryService serviceCategoryService)
+       
+        public MembersService(ServiceDBContext context,GenderService genderService,DepartmentService departmentService)
         {
             _Context = context;
             _GenderService = genderService;
             _DepartmentService = departmentService;
-            _ServiceCategoryService = serviceCategoryService;
+           
         }
 
         public MembersViewModel CreateMembers()
@@ -33,15 +33,14 @@ namespace ServiceAndSeatManagement.Models.Services
                 MembersViewModel model = new MembersViewModel();
                 List<GenderViewModel> genders = _GenderService.GetGenders();
                 List<DepartmentViewModel> departments = _DepartmentService.GetDepartments();
-                List<ServiceCategoryViewModel> serviceCategories = _ServiceCategoryService.GetServiceCategories();
+               
 
                 SelectList genderList = new SelectList(genders, "GenderId", "GenderName");
                 SelectList departmentList = new SelectList(departments, "DepartmentId", "DepartmentName");
-                SelectList ServiceCategoryList = new SelectList(serviceCategories, "ServiceCategoryId", "ServiceCategoryName");
-
+               
                 model.GenderList = genderList;
                 model.DepartmentList = departmentList;
-                model.ServiceCategoryList = ServiceCategoryList;
+               
 
                 return model;
 
@@ -60,14 +59,12 @@ namespace ServiceAndSeatManagement.Models.Services
                 List<Members> members = _Context.Members
                     .Include(x => x.Gender)
                     .Include(x => x.Department)
-                    .Include(x => x.ServiceCategory)
+                    
                     .ToList();
               
                 List<MembersViewModel> model = members.Select(x => new MembersViewModel
                 {
                     MemberId = x.MemberId,
-                    Surname = x.Surname,
-                    Othernames = x.Othernames,
                     FullName = x.FullName,
                     Age = x.Age,
                     GenderId = x.GenderId,
@@ -76,8 +73,7 @@ namespace ServiceAndSeatManagement.Models.Services
                     PhoneNumber = x.PhoneNumber,
                     DepartmentId = x.DepartmentId,
                     DepartmentName = x.Department.DepartmentName,
-                    ServiceCategoryId = x.ServiceCategoryId,
-                    ServiceCategoryName = x.ServiceCategory.ServiceCategoryName,
+                   
                     SeatNumber = x.SeatNumber,
                     CurrentDate = x.CurrentDate
                    
@@ -105,14 +101,13 @@ namespace ServiceAndSeatManagement.Models.Services
                         .Where(x => x.MemberId == id)
                         .Include(x => x.Gender)
                         .Include(x => x.Department)
-                        .Include(x => x.ServiceCategory)
+                       
                         .FirstOrDefault();
 
                 MembersViewModel model = new MembersViewModel
                 {
                     MemberId = members.MemberId,
-                    Surname = members.Surname,
-                    Othernames = members.Othernames,
+                 
                     FullName = members.FullName,
                     Age = members.Age,
                     GenderId = members.GenderId,
@@ -123,9 +118,7 @@ namespace ServiceAndSeatManagement.Models.Services
                     DepartmentId = members.DepartmentId,
                     DepartmentName = members.Department.DepartmentName,
                     DepartmentList = new SelectList(_DepartmentService.GetDepartments(), "DepartmentId", "DepartmentName"),
-                    ServiceCategoryId = members.ServiceCategoryId,
-                    ServiceCategoryName = members.ServiceCategory.ServiceCategoryName,
-                    ServiceCategoryList = new SelectList(_ServiceCategoryService.GetServiceCategories(), "ServiceCategoryId", "ServiceCategoryName"),
+                   
                     SeatNumber = members.SeatNumber,
                     CurrentDate = members.CurrentDate
                 };
@@ -142,52 +135,37 @@ namespace ServiceAndSeatManagement.Models.Services
 
         public bool AddMembers(MembersViewModel model)
         {
-            int updateCounting = 0;
-           
+            string MemberDigitalAddress;
+
+
             try
             {
+                if(model.DigitalAddress == null)
+                {
+                     MemberDigitalAddress = 0.ToString();
+                    model.DigitalAddress = MemberDigitalAddress;
+                }
+                else
+                {
+                    MemberDigitalAddress = model.DigitalAddress;
+                }
                
                 Members members = new Members
                 {
 
-                    Surname = model.Surname,
-                    Othernames = model.Othernames,
-                    FullName = $"{ model.Surname.ToUpper()} { model.Othernames}",
+                   
+                    FullName = model.FullName.ToUpper(),
                     Age = model.Age,
                     GenderId = model.GenderId,
-                    DigitalAddress = model.DigitalAddress,
+                    DigitalAddress = MemberDigitalAddress,
                     PhoneNumber = model.PhoneNumber,
                     DepartmentId = model.DepartmentId,
-                    ServiceCategoryId = model.ServiceCategoryId,
                     SeatNumber = model.SeatNumber,
                     CurrentDate = DateTime.Now
 
                 };
 
-
                 _Context.Members.Add(members);
-                _Context.SaveChanges();
-
-                //Add one to MemberCount in serviceCategory whenever a new person is registered depending on the service attending
-
-                ServiceCategory serviceCategories = _Context.ServiceCategory.Where(x => x.ServiceCategoryId == model.ServiceCategoryId).FirstOrDefault();
-               
-                //Get the value in MemberCount based on the service selected
-                int NumberOfMembers = Convert.ToInt32(serviceCategories.MemberCounts);
-                //Give the value retrieved to the variable updateCounting
-                updateCounting = NumberOfMembers;
-
-                //Apply switch statement by adding one to the already value retrieved
-                updateCounting += model.ServiceCategoryId switch
-                {
-                    1 => 1,
-                    2 => 1,
-                    _ => 1,
-                };
-
-                //pass the value back to MemberCount and update DB
-                serviceCategories.MemberCounts = updateCounting;
-                _Context.Update(serviceCategories);
                 _Context.SaveChanges();
 
 
@@ -206,16 +184,14 @@ namespace ServiceAndSeatManagement.Models.Services
             try
             {
                 Members members = _Context.Members.Where(x => x.MemberId == model.MemberId).FirstOrDefault();
-                members.MemberId = model.MemberId;
-                members.Surname = model.Surname;
-                members.Othernames = model.Othernames;
-                members.FullName = $"{model.Surname.ToUpper()} {model.Othernames}";
+                members.MemberId = model.MemberId;              
+                members.FullName = model.FullName.ToUpper();
                 members.Age = model.Age;
                 members.GenderId = model.GenderId;
                 members.DigitalAddress = model.DigitalAddress;
                 members.PhoneNumber = model.PhoneNumber;
                 members.DepartmentId = model.DepartmentId;
-                members.ServiceCategoryId = model.ServiceCategoryId;
+               
                 members.SeatNumber = model.SeatNumber;
 
                 _Context.Members.Update(members);
