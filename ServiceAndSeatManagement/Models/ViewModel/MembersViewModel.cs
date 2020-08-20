@@ -33,6 +33,7 @@ namespace ServiceAndSeatManagement.Models.ViewModel
         public string GenderName { get; set; }
 
         [DisplayName("Residence")]
+        [Required(ErrorMessage = "Please enter residence")]
         public string Residence { get; set; }
 
         [DisplayName("Digital Address")]
@@ -41,6 +42,7 @@ namespace ServiceAndSeatManagement.Models.ViewModel
         [DisplayName("Contact number")]
         //[RegularExpression("^[0-9]*$", ErrorMessage = "Enter only numbers")]
         //[StringLength(15,ErrorMessage ="Phone number cannot exceed 10")]
+        [Required(ErrorMessage = "Please enter contact number")]
         public string PhoneNumber { get; set; }
 
 

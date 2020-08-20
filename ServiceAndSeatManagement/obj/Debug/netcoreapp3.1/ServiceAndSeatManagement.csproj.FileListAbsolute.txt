@@ -220,7 +220,6 @@ C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndS
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\membertemperature\Details.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\membertemperature\Edit.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\membertemperature\Index.cshtml.g.cs
-C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Seat\Index.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\Yishmael\source\repos\electrons500\ServiceAndSeatManagement\ServiceAndSeatManagement\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_NotificationPartial.cshtml.g.cs
