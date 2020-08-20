@@ -69,6 +69,7 @@ namespace ServiceAndSeatManagement.Models.Services
                     Age = x.Age,
                     GenderId = x.GenderId,
                     GenderName = x.Gender.GenderName,
+                    Residence = x.Residence,
                     DigitalAddress = x.DigitalAddress,
                     PhoneNumber = x.PhoneNumber,
                     DepartmentId = x.DepartmentId,
@@ -114,6 +115,7 @@ namespace ServiceAndSeatManagement.Models.Services
                     GenderName = members.Gender.GenderName,
                     GenderList = new SelectList(_GenderService.GetGenders(), "GenderId", "GenderName"),
                     DigitalAddress = members.DigitalAddress,
+                    Residence = members.Residence,
                     PhoneNumber = members.PhoneNumber,
                     DepartmentId = members.DepartmentId,
                     DepartmentName = members.Department.DepartmentName,
@@ -142,7 +144,7 @@ namespace ServiceAndSeatManagement.Models.Services
             {
                 if(model.DigitalAddress == null)
                 {
-                     MemberDigitalAddress = 0.ToString();
+                     MemberDigitalAddress = "None";
                     model.DigitalAddress = MemberDigitalAddress;
                 }
                 else
@@ -157,6 +159,7 @@ namespace ServiceAndSeatManagement.Models.Services
                     FullName = model.FullName.ToUpper(),
                     Age = model.Age,
                     GenderId = model.GenderId,
+                    Residence = model.Residence,
                     DigitalAddress = MemberDigitalAddress,
                     PhoneNumber = model.PhoneNumber,
                     DepartmentId = model.DepartmentId,
@@ -188,6 +191,7 @@ namespace ServiceAndSeatManagement.Models.Services
                 members.FullName = model.FullName.ToUpper();
                 members.Age = model.Age;
                 members.GenderId = model.GenderId;
+                members.Residence = model.Residence;
                 members.DigitalAddress = model.DigitalAddress;
                 members.PhoneNumber = model.PhoneNumber;
                 members.DepartmentId = model.DepartmentId;

@@ -32,6 +32,8 @@ namespace ServiceAndSeatManagement.Models.ViewModel
         [NotMapped]
         public string GenderName { get; set; }
 
+        [DisplayName("Residence")]
+        public string Residence { get; set; }
 
         [DisplayName("Digital Address")]
         public string DigitalAddress { get; set; }
