@@ -5,6 +5,14 @@
     {
       "library": "bootbox.js@5.4.0",
       "destination": "wwwroot/lib/bootbox.js/"
+    },
+    {
+      "library": "datatables.net-responsive-bs4@2.2.5",
+      "destination": "wwwroot/lib/datatables.net-responsive-bs4/"
+    },
+    {
+      "library": "datatables-responsive@2.2.5",
+      "destination": "wwwroot/lib/datatables-responsive/"
     }
   ]
 }

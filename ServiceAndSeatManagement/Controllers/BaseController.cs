@@ -9,9 +9,9 @@ namespace ServiceAndSeatManagement.Controllers
 {
     public class BaseController : Controller
     {
-        public void Alert(string message, NotificationType notificationType)
+        public void Alert(string title,string message, NotificationType notificationType)
         {
-            var msg = "<script language='javascript'>swal('" + notificationType.ToString().ToUpper() + "', '" + message + "','" + notificationType + "')" + "</script>";
+            var msg = "<script language='javascript'>swal('" + title + "', '" + message + "','" + notificationType + "')" + "</script>";
            
             TempData["notification"] = msg;
 

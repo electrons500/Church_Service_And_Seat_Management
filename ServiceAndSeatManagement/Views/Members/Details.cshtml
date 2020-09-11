@@ -6,79 +6,113 @@
 }
 
 
-<div>
-    <h4>Summary of member information</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            Member ID
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.MemberId)
-        </dd>
+<div class="row">
 
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FullName)
-        </dt>
-        <dd class="col-sm-10">
+    <div class="col-md-1">
+        <img width="100" height="100" alt="church_logo" src="~/img/AG_logo.png" />
+    </div>
+    <div class="col-md-5 text-center">
+        <h4>Living Faith Assemblies of God Chapel</h4>
+        <div>
+            <p class="m-1">Post Office Box 385</p>
+            <p class="m-1">Obuasi-West Municipal</p>
+            <p class="m-1">Tel: +233546290555/+2330504898213</p>
+        </div>
+    </div>
+</div>
+<br />
+<h4 style="margin-left:20px;">Member information</h4>
+<hr />
+
+
+<table class="table table-borderless table-striped  w-50">
+    <tr>
+        <td style="color:black; font-weight:700;">
+            @Html.DisplayNameFor(model => model.FullName):
+        </td>
+        <td>
             @Html.DisplayFor(model => model.FullName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-        <dd class="col-sm-10">
+        </td>
+    </tr>
+    <tr>
+        <td style="color:black; font-weight:700;">
+            @Html.DisplayNameFor(model => model.Age):
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Age)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.GenderId)
-        </dt>
-        <dd class="col-sm-10">
+        </td>
+    </tr>
+    <tr>
+        <td style="color:black; font-weight:700;">
+            @Html.DisplayNameFor(model => model.GenderId):
+        </td>
+        <td>
             @Html.DisplayFor(model => model.GenderName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Residence)
-        </dt>
-        <dd class="col-sm-10">
+        </td>
+    </tr>
+    <tr>
+        <td style="color:black; font-weight:700;  ">
+            @Html.DisplayNameFor(model => model.Residence):
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Residence)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DigitalAddress)
-        </dt>
-        <dd class="col-sm-10">
+        </td>
+    </tr>
+    <tr>
+        <td style="color:black; font-weight:700; ">
+            @Html.DisplayNameFor(model => model.DigitalAddress):
+        </td>
+        <td>
             @Html.DisplayFor(model => model.DigitalAddress)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd class="col-sm-10">
+        </td>
+    </tr>
+    <tr>
+        <td style="color:black;font-weight:700; ">
+            @Html.DisplayNameFor(model => model.PhoneNumber):
+        </td>
+        <td>
             @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DepartmentId)
-        </dt>
-        <dd class="col-sm-10">
+        </td>
+    </tr>
+    <tr>
+        <td style="color:black;font-weight:700; ">
+            @Html.DisplayNameFor(model => model.DepartmentId):
+        </td>
+        <td>
             @Html.DisplayFor(model => model.DepartmentName)
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SeatNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SeatNumber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CurrentDate)
-        </dt>
-        <dd class="col-sm-10">
+        </td>
+    </tr>
+    <tr>
+        <td style="color:black; font-weight:700;">
+            @Html.DisplayNameFor(model => model.CurrentDate):
+        </td>
+        <td>
             @Html.DisplayFor(model => model.CurrentDate)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.MemberId" class="btn btn-success">Change member information</a> <br /><br />
-    <a asp-action="MembersLists">Back to List</a>
-</div>
+        </td>
+    </tr>
+
+</table>
+
+
+<nav class="navbar navbar-light bg-transparent">
+    @*<a class="navbar-brand"></a>*@
+    <form class="form-inline">
+        <a asp-action="Edit" asp-route-id="@Model.MemberId" class="btn btn-warning"><i class="fa fa-edit"> Edit</i></a> &nbsp;
+        <a asp-action="MembersLists" class="btn btn-primary"><i class="fa fa-arrow-left"> Back to List</i></a> &nbsp;
+        <button id="btnPrint" name="Printform" class="btn btn-danger my-2 my-sm-0" type="button"><i class="fa fa-print"> Print</i></button>
+    </form>
+</nav>
+@*<div>
+
+       
+    </div>*@
 <br />
 <br />
 <br />
 <br />
+
+@section Scripts{
+
+    <script src="~/js/Printform.js"></script>
+
+}

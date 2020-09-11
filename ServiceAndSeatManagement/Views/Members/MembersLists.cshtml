@@ -1,4 +1,4 @@
-﻿@model cloudscribe.Pagination.Models.PagedResult<ServiceAndSeatManagement.Models.Data.ServiceDBContext.Members>
+﻿@model IEnumerable<ServiceAndSeatManagement.Models.Data.ServiceDBContext.Members>
 
 @{
     ViewData["Title"] = "List of members";
@@ -6,102 +6,66 @@
 }
 
 
-<form asp-action="MembersLists" method="get">
-    <div>
-        <div class="row">
-            <div class="col">
-                <input type="text" name="SearchName" value="" class="form-control" placeholder="search by Name or ID" />
-            </div>
-            <div class="col">
-                <button type="submit" name="" class="btn btn-info"><i class="fa fa-search"> Search</i></button>
-                <a asp-action="MembersLists">Cancel search</a>
-            </div>
 
-        </div>
-    </div>
-
-</form>
-
-<br />
+<div> 
+        <h2 class="text-center"><i class="fa fa-users"> Manage members information</i></h2>
+</div>
 <br />
 
-<div class="row">
-    <div class="col-5">
-        <h4> Members</h4>
+<div class="row alert alert-info">
+    <div class="col-4" style="margin-bottom:10px">
+        <!-- Button trigger modal -->
     </div>
-    <div class="col-3">
+   
+    <div class="col-3 text-center">
         <a style="margin:auto" asp-controller="Home" asp-action="Index">
-            <h6><i class="fa fa-home text-dark"></i> Click to go back to Menu</h6>
+            <h6><i class="fa fa-home fa-3x text-success"></i> </h6>
         </a>
     </div>
 
 </div>
 
+<br />
 
+<div class="card">
+    <div class="card-header bg-transparent">
+        <a class="btn btn-primary" asp-action="Create">
+            <i class="fa fa-plus-circle"> Add new member</i>
+        </a>
+    </div>
+    <div class="card-body">
+        <table id="membertable"  class="table table-hover table-striped table-bordered dt-responsive nowrap" style="width:100%">
+            <thead>
+                <tr class="bg-primary text-white">
+                    <th>
+                        S/No
+                    </th>
 
-<table class="table table-striped">
-    <thead>
-        <tr class="bg-primary text-white">
-            <th>
-                Member ID
-            </th>
+                    <th>
+                        Name of member
+                    </th>
+                    <th>
+                        Residence
+                    </th>
+                    <th>
+                        Telephone number
+                    </th>
 
-            <th>
-                Name
-            </th>
-            <th>
-                Telephone number
-            </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
 
-            <th>
-                Seat number
-            </th>
-
-
-
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Data)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MemberId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.SeatNumber)
-            </td>
-
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MemberId" class="btn btn-warning btn-sm"><i class="fa fa-edit"> Edit</i></a>
-                <a asp-action="Details" asp-route-id="@item.MemberId" class="btn btn-success btn-sm"><i class="fa fa-address-book-o"> Details</i></a>
-                @*<a asp-action="Delete" asp-route-id="@item.MemberId">Delete</a>*@
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
-
-<cs-pager cs-paging-pagenumber="Model.PageNumber"
-          cs-paging-totalitems="Model.TotalItems"
-          cs-paging-pagesize="Model.PageSize"
-          cs-pagenumber-param="page"
-          asp-controller="Members"
-          asp-action="MembersLists"
-          cs-pager-li-current-class="page-item active"
-          cs-pager-li-other-class="page-item"
-          cs-pager-li-non-active-class="page-item disabled"
-          cs-pager-link-current-class="page-link"
-          cs-pager-link-other-class="page-link"></cs-pager>
+        </table>
+    </div>
+</div>
 <br />
 <br />
 <br />
-<br />
+
+@section Scripts{
+
+    <script src="~/js/MembersList.js"></script>
+
+}
+
+

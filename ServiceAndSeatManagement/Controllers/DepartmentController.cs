@@ -49,13 +49,13 @@ namespace ServiceAndSeatManagement.Controllers
                 bool result = _DepartmentService.AddDepartment(model);
                 if (result)
                 {
-                    Alert("Department successfully added!", NotificationType.success);
+                    Alert("Congratulations","Department successfully added!", NotificationType.success);
                 }
                 else
                 {
-                    Alert("Department Failed to be added!", NotificationType.error);
+                    Alert("Error","Department Failed to be added!", NotificationType.error);
                 }
-
+                return RedirectToAction(nameof(Index));
                 throw new Exception();
             }
             catch
@@ -81,14 +81,17 @@ namespace ServiceAndSeatManagement.Controllers
                 bool result = _DepartmentService.UpdateDepartment(model);
                 if (result)
                 {
-                    Alert("Data successfully updated!", NotificationType.success);
+                    Alert("Congratulations", "Department successfully updated!", NotificationType.success);
                 }
                 else
                 {
-                    Alert("Data Failed to be updated!", NotificationType.error);
+                    Alert("Error","Department failed to be updated!", NotificationType.error);
                 }
-                
+
+                return RedirectToAction(nameof(Index));
+
                 throw new Exception();
+              
             }
             catch
             {

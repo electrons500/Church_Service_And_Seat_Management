@@ -24,19 +24,21 @@ namespace ServiceAndSeatManagement.Models.Services
 
         public List<TemperatureViewModel> GetTemperatures()
         {
+            var _CurrentDate = DateTime.Now.ToShortDateString();
+
             try
             {
                 List<Temperature> temperatures = _Context.Temperature
                         .Include(x => x.Verify)                    
                         .Include(x => x.Member)
+                        .Where(x => x.CurrentDate == Convert.ToDateTime(_CurrentDate))
                         .ToList();
 
                 List<TemperatureViewModel> model = temperatures.Select(b => new TemperatureViewModel
                 {
                     TemperatureId = b.TemperatureId,
                     MemberId = b.MemberId,
-                    MemberName = b.Member.FullName,
-                   
+                    MemberName = b.Member.FullName,                   
                     TempuratureNumber = b.TempuratureNumber,
                     CurrentDate = b.CurrentDate,
                     VerifyId = b.VerifyId,

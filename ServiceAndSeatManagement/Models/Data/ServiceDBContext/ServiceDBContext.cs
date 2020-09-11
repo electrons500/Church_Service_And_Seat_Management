@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using ServiceAndSeatManagement.Models.ViewModel;
 
 namespace ServiceAndSeatManagement.Models.Data.ServiceDBContext
 {
@@ -137,5 +138,9 @@ namespace ServiceAndSeatManagement.Models.Data.ServiceDBContext
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        public DbSet<ServiceAndSeatManagement.Models.ViewModel.TemperatureViewModel> TemperatureViewModel { get; set; }
+
+        public DbSet<ServiceAndSeatManagement.Models.ViewModel.DailyTemperatureRecordsViewModel> DailyTemperatureRecordsViewModel { get; set; }
     }
 }

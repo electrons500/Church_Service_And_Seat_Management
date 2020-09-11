@@ -27,6 +27,8 @@ namespace ServiceAndSeatManagement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+
             services.AddDbContext<ServiceDBContext>(o => {
                 o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
@@ -38,9 +40,8 @@ namespace ServiceAndSeatManagement
             services.AddScoped<MembersService>();
             services.AddScoped<TemperatureService>();
             services.AddScoped<VerifyMemberService>();
+            services.AddScoped<DailytemperatureRecordsService>();
            
-
-            services.AddCloudscribePagination();
 
         }
 

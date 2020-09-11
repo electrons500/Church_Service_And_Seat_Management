@@ -1,48 +1,37 @@
-﻿@model cloudscribe.Pagination.Models.PagedResult<ServiceAndSeatManagement.Models.Data.ServiceDBContext.Temperature>
+﻿@model ServiceAndSeatManagement.Models.ViewModel.TemperatureViewModel
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-   
+
 
 }
 
 <h4>Today's temperature record list</h4>
 <br />
-<form>
-    <div class="row">
-        <div class="col">
-            <input type="text" name="SearchString" class="form-control" value="" placeholder="Search by name"/>
-        </div>
-        <div class="col">
-            <button type="submit" name="" class="btn btn-info"><i class="fa fa-search"> Search</i></button>
-            <a asp-action="Index">Cancel search</a>
-        </div>
-    </div>
-</form>
-<br />
 
-<div class="row">
+
+<div class="row alert alert-info">
     <div class="col-10 text-center">
         <a style="margin:auto" asp-controller="Home" asp-action="Index">
-            <h6><i class="fa fa-home text-dark"></i> Click to go back to Menu</h6>
+            <h2><i class="fa fa-home fa-2x text-success"></i> </h2>
         </a>
     </div>
 </div>
 
-<table class="table">
-    <thead>
+<table id="emptable"  class="table table-hover table-striped table-bordered dt-responsive nowrap" style="width:100%">
+    <thead class="bg-primary text-white">
         <tr>
-            <th hidden>
-                Member ID
+            <th>
+               S/No
             </th>
             <th>
-                Member name
+                Name of Member
             </th>
-           
+
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewBag.TempSortOrderParam"> Temperature</a>
+                Temperature
             </th>
 
             <th>
@@ -51,50 +40,15 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var item in Model.Data)
-        {
-            
-            <tr>
-                <td hidden>
-                    @Html.DisplayFor(modelItem => item.MemberId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Member.FullName)
-                </td>
-               
-                <td>
-                    @Html.DisplayFor(modelItem => item.TempuratureNumber)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Verify.VerifyName)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.TemperatureId" class="btn btn-warning"><i class="fa fa-edit"> Edit</i></a>
-
-                </td>
-            </tr>
-
-           
-        }
-    </tbody>
+    
 </table>
+<br />
+<br />
+<br />
+
+@section Scripts{
+
+    <script src="~/js/Temperature.js"></script>
 
 
-<cs-pager cs-paging-pagenumber="Model.PageNumber"
-          cs-paging-totalitems="Model.TotalItems"
-          cs-paging-pagesize="Model.PageSize"
-          cs-pagenumber-param="pageNumber"
-          asp-controller="membertemperature"
-          asp-action="Index"
-          cs-pager-li-current-class="page-item active"
-          cs-pager-li-other-class="page-item"
-          cs-pager-li-non-active-class="page-item disabled"
-          cs-pager-link-current-class="page-link"
-          cs-pager-link-other-class="page-link"
-></cs-pager>
-<br />
-<br />
-<br />
-<br />
+}

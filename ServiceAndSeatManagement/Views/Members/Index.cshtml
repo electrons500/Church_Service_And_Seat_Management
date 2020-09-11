@@ -1,4 +1,7 @@
-﻿@model cloudscribe.Pagination.Models.PagedResult<ServiceAndSeatManagement.Models.Data.ServiceDBContext.Members>
+﻿@model ServiceAndSeatManagement.Models.ViewModel.MembersViewModel
+
+
+
 
 @{
     ViewData["Title"] = "Index";
@@ -6,105 +9,236 @@
 }
 
 
-<form asp-action="Index" method="get">
-    <div>
-        <div class="row">
-            <div class="col">
-                <input type="text" name="SearchString" value="" class="form-control" placeholder="search by Name or ID" />
-            </div>
-            <div class="col">
-                <button type="submit" name="" class="btn btn-info"><i class="fa fa-search"> Search</i></button>
-                <a asp-action="Index">Cancel search</a>
-            </div>
+<div>
+    <h2 class="text-center"><i class="fa fa-users"> Members</i></h2>
+</div>
 
-        </div>
-    </div>
+<div class="row alert alert-info">
+    <div class="col-5" style="margin-bottom:10px">
+        <!-- Button trigger modal -->
+        @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMembersModal">
+            <i class="fa fa-plus-circle"> Add new member</i>
+        </button>*@
 
-</form>
-
-<br />
-<br />
-
-<div class="row">
-    <div class="col-4">
-        <h4>Members</h4>
     </div>
     <div class="col-3">
         <a style="margin:auto" asp-controller="Home" asp-action="Index">
-            <h6><i class="fa fa-home text-dark"></i> Click to go back to Menu</h6>
+            <h6><i class="fa fa-home fa-3x text-success"></i> </h6>
         </a>
     </div>
-    <div class="col-5 text-right" style="margin-bottom:10px">
-        <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus"> Add new member</i></a>
+
+</div>
+
+<br />
+
+<div class="card">
+    <div class="card-header bg-transparent">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMembersModal">
+            <i class="fa fa-plus-circle"> Add new member</i>
+        </button>
+    </div>
+    <div class="card-body">
+        <div>
+            <table id="emptable" class="table table-hover table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                <thead>
+                    <tr class="bg-primary text-white">
+                        <th>
+                            S/No
+                        </th>
+                        <th>
+                            Name of member
+                        </th>
+                        <th>
+                            Residence
+                        </th>
+                        <th>
+                            Telephone number
+                        </th>
+
+                        <th>Action </th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
     </div>
 </div>
 
 
 
-<table class="table table-striped">
-    <thead>
-        <tr class="bg-primary text-white">
-            <th>
-                Member ID
-            </th>
+<!-- Add new member Modal -->
+<div class="modal fade" id="addMembersModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fa fa-users"> New Member</i></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
-            <th>
-                Name
-            </th>
-            <th>
-                Telephone number
-            </th>
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <th>
-                Seat number
-            </th>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label asp-for="FullName" class="control-label"></label>
+                                <input asp-for="FullName" class="form-control" required />
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label asp-for="Age" class="control-label"></label>
+                                <input asp-for="Age" class="form-control" required />
+                                <span asp-validation-for="Age" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label asp-for="GenderId" class="control-label"></label>
+                                <select asp-for="GenderId" asp-items="Model?.GenderList" class="form-control" required>
+                                    <option>Select gender </option>
+                                </select>
+                                <span asp-validation-for="GenderId" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label asp-for="Residence" class="control-label"></label>
+                                <input asp-for="Residence" class="form-control" required />
+                                <span asp-validation-for="Residence" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label asp-for="DigitalAddress" class="control-label"></label>
+                                <input asp-for="DigitalAddress" class="form-control" />
+                                <span asp-validation-for="DigitalAddress" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label asp-for="PhoneNumber" class="control-label"></label>
+                                <input asp-for="PhoneNumber" class="form-control" required />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label asp-for="DepartmentId" class="control-label"></label>
+                                <select asp-for="DepartmentId" asp-items="Model?.DepartmentList" class=" form-control" required>
+                                    <option>Select department</option>
+                                </select>
+                                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            
+                        </div>
+                    </div>
 
 
 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Data)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MemberId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
+                    <button onclick="AddMemberData()" id="btnNewMember" type="submit" class="btn btn-primary text-white"><i class="fa fa-save"> Submit</i></button>
+                    &nbsp;
+                    <button type="reset" class="btn btn-danger text-white"><i class="fa fa-trash-o"> Clear</i></button>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.SeatNumber)
-            </td>
 
-            <td>
+                </form>
 
-                <a asp-controller="membertemperature" asp-action="Create" asp-route-id="@item.MemberId" class="btn btn-success btn-sm"><i class="fa fa-thermometer-quarter"> Check temperature</i></a>
+            </div>
+            <div class="modal-footer">
 
-            </td>
-        </tr>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Temperature  Modal -->
+<div class="modal fade" id="editMembersModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fa fa-users"> New temperature</i></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form asp-action="SaveTemperature" method="post">
+                    <div class="form-group">
+                        <label class="control-label">Member ID</label>
+                        <input id="MemberId" class="form-control" name="txtMemberId" readonly />
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Temperature number</label>
+                        <input id="tempNo" class="form-control" name="txtTemperature" required />
+
+                    </div>
+
+                    <button  id="btnTempSave" type="submit" class="btn btn-primary text-white"><i class="fa fa-save"> Submit</i></button>
+                    &nbsp;
+                    <button type="button" class="btn btn-danger text-white"><i class="fa fa-trash-o" onclick="ClearText()"> Clear</i></button>
+
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br />
+<br />
+<br />
+
+@section Scripts{
+
+    <script src="~/js/Members.js"></script>
+
+    <script>
+        $('#editMembersModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            //modal.find('.modal-title').text('New message to ' + recipient)
+            //modal.find('.modal-body input').val(recipient)
+            $('#MemberId').val(recipient);
+        })
+    </script>
+
+    
+    <script>
+        function ClearText() {
+            $("#tempNo").val(" ");
         }
-    </tbody>
-</table>
+    </script>
 
-<cs-pager cs-paging-pagenumber="Model.PageNumber"
-          cs-paging-totalitems="Model.TotalItems"
-          cs-paging-pagesize="Model.PageSize"
-          cs-pagenumber-param="pageNumber"
-          asp-controller="Members"
-          asp-action="Index"
-          cs-pager-li-current-class="page-item active"
-          cs-pager-li-other-class="page-item"
-          cs-pager-li-non-active-class="page-item disabled"
-          cs-pager-link-current-class="page-link"
-          cs-pager-link-other-class="page-link"></cs-pager>
+}
 
-<br />
-<br />
-<br />
-<br />
+

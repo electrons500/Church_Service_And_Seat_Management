@@ -74,8 +74,7 @@ namespace ServiceAndSeatManagement.Models.Services
                     PhoneNumber = x.PhoneNumber,
                     DepartmentId = x.DepartmentId,
                     DepartmentName = x.Department.DepartmentName,
-                   
-                    SeatNumber = x.SeatNumber,
+                  
                     CurrentDate = x.CurrentDate
                    
 
@@ -121,7 +120,6 @@ namespace ServiceAndSeatManagement.Models.Services
                     DepartmentName = members.Department.DepartmentName,
                     DepartmentList = new SelectList(_DepartmentService.GetDepartments(), "DepartmentId", "DepartmentName"),
                    
-                    SeatNumber = members.SeatNumber,
                     CurrentDate = members.CurrentDate
                 };
 
@@ -129,9 +127,10 @@ namespace ServiceAndSeatManagement.Models.Services
             }
             catch (Exception)
             {
-                MembersViewModel emptymodel = new MembersViewModel();
+                //MembersViewModel emptymodel = new MembersViewModel();
 
-                return emptymodel;
+                //return emptymodel;
+                throw;
             }
         }
 
@@ -144,7 +143,7 @@ namespace ServiceAndSeatManagement.Models.Services
             {
                 if(model.DigitalAddress == null)
                 {
-                     MemberDigitalAddress = "None";
+                    MemberDigitalAddress = "None";
                     model.DigitalAddress = MemberDigitalAddress;
                 }
                 else
@@ -153,17 +152,14 @@ namespace ServiceAndSeatManagement.Models.Services
                 }
                
                 Members members = new Members
-                {
-
-                   
+                {                   
                     FullName = model.FullName.ToUpper(),
                     Age = model.Age,
                     GenderId = model.GenderId,
                     Residence = model.Residence,
                     DigitalAddress = MemberDigitalAddress,
                     PhoneNumber = model.PhoneNumber,
-                    DepartmentId = model.DepartmentId,
-                    SeatNumber = model.SeatNumber,
+                    DepartmentId = model.DepartmentId,                 
                     CurrentDate = DateTime.Now
 
                 };
@@ -196,7 +192,7 @@ namespace ServiceAndSeatManagement.Models.Services
                 members.PhoneNumber = model.PhoneNumber;
                 members.DepartmentId = model.DepartmentId;
                
-                members.SeatNumber = model.SeatNumber;
+                //members.SeatNumber = model.SeatNumber;
 
                 _Context.Members.Update(members);
                 _Context.SaveChanges();

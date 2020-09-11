@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using cloudscribe.Pagination.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -21,65 +20,43 @@ namespace ServiceAndSeatManagement.Controllers
     public class MembersController : BaseController
     {
         private MembersService _MembersService;
+        private TemperatureService _TemperatureService;
         private ServiceDBContext _Context;
       
-        public MembersController(MembersService membersService,ServiceDBContext context)
+        public MembersController(MembersService membersService,TemperatureService temperatureService,ServiceDBContext context)
         {
             _MembersService = membersService;
+            _TemperatureService = temperatureService;
             _Context = context;
         }
         // GET: Members
        
-        public ActionResult Index(string searchString,int pageNumber=1,int pageSize=10)
+        public ActionResult Index()
         {
-           
-
-            int ExcludeRecords = (pageNumber * pageSize) - pageSize;
-            // var members = _Context.Members.OrderBy(x =>x.FullName).Skip(ExcludeRecords).Take(pageSize);
-            var members = from b in _Context.Members
-                          select b;
-
-            var memberCount = members.Count();
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                if (IsNumeric(searchString))
-                {
-                    members = members.Where(x => x.MemberId == Convert.ToInt32(searchString));
-                    memberCount = members.Count();
-                }
-                else
-                {
-                    members = members.Where(x => x.FullName.Contains(searchString));
-                    memberCount = members.Count();
-                }
-            }
             
-            
-
-            members = members.OrderBy(x => x.FullName).Skip(ExcludeRecords).Take(pageSize);
-            var result = new PagedResult<Members>
-            {
-                Data = members.AsNoTracking().ToList(),
-                TotalItems = memberCount,
-                PageNumber = pageNumber,
-                PageSize = pageSize
-                
-            };
-                                 
-
-            return View(result);
+            //data to dropdownlist
+            var model = _MembersService.CreateMembers();
+            return View(model);
         }
 
         // GET: Members/Details/5
         public ActionResult Details(int id)
         {
             var model = _MembersService.GetMembersDetails(id);
+            if(model == null)
+            {
+                return View();
+            }
+            else
+            {
+                return View(model);
+            }
 
-            return View(model);
+           
         }
 
         // GET: Members/Create
+
         public ActionResult Create()
         {
             var model = _MembersService.CreateMembers();
@@ -94,14 +71,21 @@ namespace ServiceAndSeatManagement.Controllers
            
             try
             {
-
+                if(model == null)
+                {
+                    return RedirectToAction(nameof(ErrorMessage));
+                }
+               
+                
                 bool result = _MembersService.AddMembers(model);
                 if (result)
                 {
-                   
-                    return RedirectToAction(nameof(Index));
+
+                    Alert("Congratulations", "New member successfully added!", NotificationType.success);
+                    
                     
                 }
+                return RedirectToAction(nameof(Index));
 
                 throw new Exception();
             }
@@ -126,12 +110,23 @@ namespace ServiceAndSeatManagement.Controllers
         {
             try
             {
+                if (model == null)
+                {
+                    return RedirectToAction(nameof(ErrorMessage));
+                }
+
+
                 bool result = _MembersService.UpdateMembers(model);
                 if (result)
                 {
-                    return RedirectToAction(nameof(MembersLists));
-                }
+                    Alert("Congratulations", "Member information successfully updated!", NotificationType.success);
 
+                }
+                else
+                {
+                    return RedirectToAction(nameof(ErrorMessage));
+                }
+                return RedirectToAction(nameof(MembersLists));
                 throw new Exception();
                 
             }
@@ -156,6 +151,7 @@ namespace ServiceAndSeatManagement.Controllers
         {
             try
             {
+                
                 bool result = _MembersService.DeleteMember(id);
                 if (result)
                 {
@@ -171,46 +167,85 @@ namespace ServiceAndSeatManagement.Controllers
             }
         }
       
-        public ActionResult MembersLists(string searchName, int page = 1, int pageIndex = 10)
-        {
-            int ExcludeRecords = (page * pageIndex) - pageIndex;
-            // var members = _Context.Members.OrderBy(x =>x.FullName).Skip(ExcludeRecords).Take(pageSize);
-            var members = from b in _Context.Members
-                          select b;
-
-            var memberCount = members.Count();
-
-            if (!String.IsNullOrEmpty(searchName))
-            {
-                if (IsNumeric(searchName))
-                {
-                    members = members.Where(x => x.MemberId == Convert.ToInt32(searchName));
-                    memberCount = members.Count();
-                }
-                else
-                {
-                    members = members.Where(x => x.FullName.Contains(searchName));
-                    memberCount = members.Count();
-                }
-            }
-
-
-
-            members = members.OrderBy(x => x.FullName).Skip(ExcludeRecords).Take(pageIndex);
-            var result = new PagedResult<Members>
-            {
-                Data = members.AsNoTracking().ToList(),
-                TotalItems = memberCount,
-                PageNumber = page,
-                PageSize = pageIndex
-
-            };
-
-
-            return View(result);
+        [HttpGet]
+        public ActionResult GetMembersData()
+        {          
+           
+            var model = _MembersService.GetMembers();
+            
+            return Json(new { data = model });
         }
-      
-       
+
+        public ActionResult MembersLists()
+        {
+           
+
+            return View();
+        }
+        
+        [HttpPost]
+        public ActionResult SaveTemperature()
+        {
+            //Get data from View to controller
+            var memberNo = Request.Form["txtMemberId"].ToString();
+            var memberTemperature = Request.Form["txtTemperature"].ToString();
+           
+                try
+                {
+                            decimal a = Convert.ToDecimal(memberTemperature);
+                            if (a <= 1) {
+
+                                return RedirectToAction(nameof(ErrorMessage));
+                            }
+
+
+                            TemperatureViewModel model = new TemperatureViewModel
+                            {
+                                MemberId = Convert.ToInt32(memberNo),
+                                TempuratureNumber = Convert.ToDecimal(memberTemperature),
+                                //verifyNumber must set to Yes which 2 in the DB
+                                VerifyId = 2
+
+                             };
+
+
+               
+                            bool result = _TemperatureService.AddTemperature(model);
+                            if (result)
+                            {
+                                Alert("Congratulations", "Temperature successfully recorded!", NotificationType.success);
+
+                            }
+                            else
+                            {
+                                Alert("Error","Temperature Failed to be recorded!", NotificationType.error);
+                            }
+
+                            return RedirectToAction(nameof(Index));
+                        
+
+                }
+                catch (FormatException)
+                {
+                    return RedirectToAction(nameof(ErrorMessage));
+                }
+                catch (Exception)
+                {
+
+                    throw;
+
+                }
+            
+        }
+        
+        
+        public ActionResult ErrorMessage()
+        {
+            Alert("Error", "Error message page", NotificationType.error);
+            return View();
+        }
+
+
         public bool IsNumeric(object values)
         {
             try
